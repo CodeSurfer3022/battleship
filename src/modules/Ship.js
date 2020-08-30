@@ -1,15 +1,14 @@
-function Ship(length) {
-    const sectionsHealth = []
-    for(let i = 0; i < length; i ++) {
-        sectionsHealth.push(1);
-    }
-    const hit = (point) => {
-        sectionsHealth[point] = 0;
+function Ship(positions) {
+    const positionsHealth = {};
+    positions.forEach(position => positionsHealth[position] = 1);
+
+    const hit = (position) => {
+        positionsHealth[position] = 0;
     }
     const isSunk = () => {
-        return sectionsHealth.every(health => health === 0)
+        return positionsHealth.values.every(health => health === 0)
     }
-    return {length, hit, isSunk};
+    return {hit, isSunk};
 }
 
 export default Ship;
