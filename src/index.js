@@ -1,4 +1,15 @@
 import Ship from './modules/Ship';
+import GameBoard from './modules/GameBoard';
 
-const ship = Ship(10);
-console.log(ship);
+let board = GameBoard();
+console.log(board);
+
+board.placeShip([1,2]);
+console.log(board);
+
+board.receiveAttack(1);
+board.receiveAttack(0);
+// board.receiveAttack(2);
+
+console.log(board);
+console.log(board.ships[0].isSunk());

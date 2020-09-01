@@ -1,4 +1,4 @@
-import Ship from './Ship';
+const Ship = require('./Ship');
 
 function GameBoard() {
     const board = [];
@@ -41,4 +41,4 @@ function GameBoard() {
     }
 }
 
-export default GameBoard;
+module.exports = GameBoard;

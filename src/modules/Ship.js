@@ -12,4 +12,4 @@ function Ship(positions) {
     return {hit, isSunk};
 }
 
-export default Ship;
+module.exports = Ship;
