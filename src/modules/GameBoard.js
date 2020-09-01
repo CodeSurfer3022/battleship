@@ -23,9 +23,7 @@ function GameBoard() {
     const receiveAttack = (position) => {
         if(board[position] === undefined) {
             board[position] = 'miss';
-        } else if (board[position] === 'miss' || board[position] === 'hit'){
-
-        } else {
+        } else if (board[position] !== 'miss' && board[position] !== 'hit'){
             const index = board[position];
             const hitShip = ships[index];
             hitShip.hit(position);
@@ -33,11 +31,16 @@ function GameBoard() {
         }
     }
 
+    const allShipsSunk = () => {
+        return ships.every(ship => ship.isSunk());
+    }
+
     return {
         board,
         ships,
         placeShip,
-        receiveAttack
+        receiveAttack,
+        allShipsSunk
     }
 }
 

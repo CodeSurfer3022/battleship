@@ -6,7 +6,6 @@ function Ship(positions) {
         positionsHealth[position] = 0;
     }
     const isSunk = () => {
-        console.log('in here');
         return Object.values(positionsHealth).every(health => health === 0)
     }
     return {hit, isSunk};
