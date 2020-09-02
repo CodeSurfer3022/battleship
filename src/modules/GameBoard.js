@@ -1,5 +1,25 @@
 const Ship = require('./Ship');
 
+function arePositionsValid(positions) {
+    let isHorizontal = true;
+    for(let i = 1; i < positions.length; i ++) {
+        if(positions[i] - positions[i - 1] !== 1) {
+            isHorizontal = false;
+            break;
+        }
+    }
+
+    let isVertical = true;
+    for(let i = 1; i < positions.length; i ++) {
+        if(positions[i] - positions[i - 1] !== 10) {
+            isVertical = false;
+            break;
+        }
+    }
+
+    return isHorizontal || isVertical;
+}
+
 function GameBoard() {
     const board = [];
     const ships = [];
@@ -10,7 +30,9 @@ function GameBoard() {
     }
 
     const placeShip = (positions) => {
-        if(positions.every(position => board[position] === undefined)) {
+        if(positions.every(position => board[position] === undefined) &&
+            arePositionsValid(positions)
+        ) {
             const ship = Ship(positions);
             let index = ships.length;
             positions.forEach(position => board[position] = index);
