@@ -1,5 +1,7 @@
 import GameBoard from './modules/GameBoard';
 import Player from './modules/Player';
+import render from './modules/BoardRender';
+
 
 const player1 = Player();
 const computer = Player();
@@ -27,15 +29,15 @@ console.log("placement is done, let the game begin")
 
 let turn = "player1";
 
-while(!playerBoard.allShipsSunk() && !computerBoard.allShipsSunk()) {
-    if(turn === "player1") {
-        const position = prompt("enter position to attack");
-        player1.attack(computerBoard, position);
-    } else {
-        const position = Math.round(Math.random() * 100);
-        console.log(position);
-    }
-    turn = turn === "player1" ? "computer" : "player1";
-    console.log(playerBoard.allShipsSunk());
-    console.log(computerBoard.allShipsSunk());
-}
+// while(!playerBoard.allShipsSunk() && !computerBoard.allShipsSunk()) {
+//     if(turn === "player1") {
+//         const position = prompt("enter position to attack");
+//         player1.attack(computerBoard, position);
+//     } else {
+//         const position = Math.round(Math.random() * 100);
+//         console.log(position);
+//     }
+//     turn = turn === "player1" ? "computer" : "player1";
+//     console.log(playerBoard.allShipsSunk());
+//     console.log(computerBoard.allShipsSunk());
+// }
