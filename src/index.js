@@ -1,6 +1,6 @@
 import GameBoard from './modules/GameBoard';
 import Player from './modules/Player';
-import render from './modules/BoardRender';
+import renderBoard from './modules/BoardRender';
 
 
 const player1 = Player();
@@ -24,6 +24,9 @@ function computerPlacement() {
 
 console.log(playerBoard);
 console.log(computerBoard);
+
+renderBoard('player', playerBoard.board);
+renderBoard('computer', computerBoard.board);
 
 console.log("placement is done, let the game begin")
 
