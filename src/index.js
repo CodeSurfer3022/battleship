@@ -1,19 +1,18 @@
 import GameBoard from './modules/GameBoard';
 import Player from './modules/Player';
 import renderBoard from './modules/BoardRender';
-import actionHandler from './modules/BoardActions';
+import playRound from './modules/GameLoop';
 
-
-const player = Player();
-const computer = Player();
-
-const  playerBoard = GameBoard();
+const humanBoard = GameBoard();
 const computerBoard = GameBoard();
 
-console.log("player 1, place your ships")
-playerBoard.placeShip([1, 2, 3]);
-playerBoard.placeShip([10, 20, 30]);
-playerBoard.placeShip([50]);
+/******************************************************************************************
+ * placement of ships
+ *******************************************************************************************/
+console.log("human, place your ships")
+humanBoard.placeShip([1, 2, 3]);
+humanBoard.placeShip([10, 20, 30]);
+humanBoard.placeShip([50]);
 
 computerPlacement();
 
@@ -23,34 +22,20 @@ function computerPlacement() {
     computerBoard.placeShip([90, 91, 92]);
 }
 
-console.log(playerBoard);
+console.log(humanBoard);
 console.log(computerBoard);
 
-const playerContainer = document.querySelector('#playerBoard');
-const computerContainer = document.querySelector('#computerBoard');
+/******************************************************************************************
+ * placement of ships
+ *******************************************************************************************/
 
-renderBoard(playerContainer, playerBoard.board);
-renderBoard(computerContainer, computerBoard.board);
+const humanBoardContainer = document.querySelector('#humanBoardContainer');
+const computerBoardContainer = document.querySelector('#computerBoardContainer');
 
-console.log("placement is done, let the game begin")
+renderBoard(humanBoardContainer, humanBoard.board, "humanBoard");
+renderBoard(computerBoardContainer, computerBoard.board, "computerBoard");
 
-let turn = "player";
+const computerBoardDiv = computerBoardContainer.querySelector('#computerBoard');
+computerBoardDiv.addEventListener('click', playRound);
 
-const cells = computerContainer.querySelectorAll('.cell');
-cells.forEach(cell => {
-        cell.addEventListener('click',
-            actionHandler.attack.bind(this, player, computerBoard, cell));
-    }
-);
-
-// while(!playerBoard.allShipsSunk() && !computerBoard.allShipsSunk()) {
-//     if(turn === "player") {
-//         player.attack(computerBoard, position);
-//     } else {
-//         const position = Math.round(Math.random() * 100);
-//         console.log(position);
-//     }
-//     turn = turn === "player" ? "computer" : "player";
-//     console.log(playerBoard.allShipsSunk());
-//     console.log(computerBoard.allShipsSunk());
-// }
+export {computerBoard, humanBoard}
