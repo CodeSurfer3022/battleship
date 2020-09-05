@@ -37,6 +37,22 @@ main {
     background-color: white;
 }
 
+.cell:hover {
+    cursor: pointer;
+}
+
+.present {
+    border: 1px solid blue;
+}
+
+.miss {
+    background-color: pink;
+}
+
+.hit {
+    background: greenyellow;
+}
+
 footer {
     height: 100px;
     width: 100%;
