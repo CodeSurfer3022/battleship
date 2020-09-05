@@ -1,9 +1,10 @@
 import GameBoard from './modules/GameBoard';
 import Player from './modules/Player';
 import renderBoard from './modules/BoardRender';
+import actionHandler from './modules/BoardActions';
 
 
-const player1 = Player();
+const player = Player();
 const computer = Player();
 
 const  playerBoard = GameBoard();
@@ -25,22 +26,31 @@ function computerPlacement() {
 console.log(playerBoard);
 console.log(computerBoard);
 
-renderBoard('player', playerBoard.board);
-renderBoard('computer', computerBoard.board);
+const playerContainer = document.querySelector('#playerBoard');
+const computerContainer = document.querySelector('#computerBoard');
+
+renderBoard(playerContainer, playerBoard.board);
+renderBoard(computerContainer, computerBoard.board);
 
 console.log("placement is done, let the game begin")
 
-let turn = "player1";
+let turn = "player";
+
+const cells = computerContainer.querySelectorAll('.cell');
+cells.forEach(cell => {
+        cell.addEventListener('click',
+            actionHandler.attack.bind(this, player, computerBoard, cell));
+    }
+);
 
 // while(!playerBoard.allShipsSunk() && !computerBoard.allShipsSunk()) {
-//     if(turn === "player1") {
-//         const position = prompt("enter position to attack");
-//         player1.attack(computerBoard, position);
+//     if(turn === "player") {
+//         player.attack(computerBoard, position);
 //     } else {
 //         const position = Math.round(Math.random() * 100);
 //         console.log(position);
 //     }
-//     turn = turn === "player1" ? "computer" : "player1";
+//     turn = turn === "player" ? "computer" : "player";
 //     console.log(playerBoard.allShipsSunk());
 //     console.log(computerBoard.allShipsSunk());
 // }

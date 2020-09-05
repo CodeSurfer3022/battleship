@@ -1,21 +1,13 @@
-function renderBoard(player, board) {
-    let selector;
-    if(player === 'player') {
-        selector = 'playerBoard';
-    } else if (player === 'computer') {
-        selector = 'computerBoard';
-    }
-
-    const container = document.querySelector('#' + selector);
+function renderBoard(container, board) {
 
     const displayBoard = document.createElement('div');
     displayBoard.classList.add('board');
 
-    board.forEach(position => {
+    board.forEach( (position, index = 0) => {
         const cell = document.createElement('div');
         cell.classList.add('cell');
-
-        if(typeof cell === 'number') {
+        cell.setAttribute('data-key', index);
+        if(typeof position === 'number') {
             cell.classList.add('present');
         }
 
