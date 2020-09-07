@@ -14,7 +14,7 @@ header {
 
 }
 
-main {
+#ships {
     display: flex;
     justify-content: space-evenly;
 }
