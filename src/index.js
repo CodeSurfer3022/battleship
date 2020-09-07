@@ -1,5 +1,4 @@
 import GameBoard from './modules/GameBoard';
-import Player from './modules/Player';
 import renderBoard from './modules/BoardRender';
 import playRound from './modules/GameLoop';
 

@@ -34,4 +34,5 @@ function attack(player, board, cell, position){
         cell.classList.add('hit');
     }
 }
+
 export default playRound;
