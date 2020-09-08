@@ -1,39 +1,30 @@
 import GameBoard from './modules/GameBoard';
-import renderBoard from './modules/BoardRender';
+import renderBoard from './modules/BoardDisplay';
 import playRound from './modules/GameLoop';
+import shipPlacement from './modules/BoardPlacement';
 
-const humanBoard = GameBoard();
-const computerBoard = GameBoard();
+const selfBoard = GameBoard();
+const opponentBoard = GameBoard();
 
+const selfBoardDiv = document.querySelector('#self');
+const opponentBoardDiv = document.querySelector('#opponent');
 /******************************************************************************************
  * placement of ships
  *******************************************************************************************/
-console.log("human, place your ships")
-humanBoard.placeShip([1, 2, 3]);
-humanBoard.placeShip([10, 20, 30]);
-humanBoard.placeShip([50]);
+shipPlacement.randomPlacement(selfBoard);
+shipPlacement.randomPlacement(opponentBoard);
 
-computerPlacement();
-
-function computerPlacement() {
-    computerBoard.placeShip([1]);
-    computerBoard.placeShip([10, 11]);
-    computerBoard.placeShip([90, 91, 92]);
-}
-
-console.log(humanBoard);
-console.log(computerBoard);
+console.log(selfBoard);
+console.log(opponentBoard);
 
 /******************************************************************************************
  * placement of ships
  *******************************************************************************************/
 
-const humanBoardDiv = document.querySelector('#humanBoardDiv');
-const computerBoardDiv = document.querySelector('#computerBoardDiv');
 
-renderBoard(humanBoard.board, humanBoardDiv);
-renderBoard(computerBoard.board, computerBoardDiv);
+renderBoard(selfBoard.board, selfBoardDiv);
+renderBoard(opponentBoard.board, opponentBoardDiv);
 
-computerBoardDiv.addEventListener('click', playRound);
+opponentBoardDiv.addEventListener('click', playRound);
 
-export {computerBoard, humanBoard, humanBoardDiv}
+export {opponentBoard, selfBoard, selfBoardDiv}
