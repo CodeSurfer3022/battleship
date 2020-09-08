@@ -25,13 +25,10 @@ header {
     border: 1px solid black;
     display: grid;
     grid-template: repeat(10, 1fr) / repeat(10, 1fr);
-    grid-gap: 1px;
-    background-color: lightgray;
 }
 
 .cell {
-    display: table-cell;
-    background-color: white;
+    border: 1px solid black;
 }
 
 .cell:hover {
