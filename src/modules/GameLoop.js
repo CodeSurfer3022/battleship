@@ -1,5 +1,5 @@
 import Player from './Player';
-import {computerBoard, humanBoard} from '../index';
+import {computerBoard, humanBoard, humanBoardDiv} from '../index';
 
 
 const human = Player();
@@ -18,7 +18,6 @@ function playRound(e) {
     attack(human, computerBoard, cell, position);
 
     // computer's attack on human
-    const humanBoardDiv = document.querySelector('#humanBoard');
     position = Math.round(Math.random() * 100);
     cell = humanBoardDiv.querySelector(`div[data-key="${position}"]`);
 

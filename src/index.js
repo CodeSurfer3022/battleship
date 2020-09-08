@@ -28,13 +28,12 @@ console.log(computerBoard);
  * placement of ships
  *******************************************************************************************/
 
-const humanBoardContainer = document.querySelector('#humanBoardContainer');
-const computerBoardContainer = document.querySelector('#computerBoardContainer');
+const humanBoardDiv = document.querySelector('#humanBoardDiv');
+const computerBoardDiv = document.querySelector('#computerBoardDiv');
 
-renderBoard(humanBoardContainer, humanBoard.board, "humanBoard");
-renderBoard(computerBoardContainer, computerBoard.board, "computerBoard");
+renderBoard(humanBoard.board, humanBoardDiv);
+renderBoard(computerBoard.board, computerBoardDiv);
 
-const computerBoardDiv = computerBoardContainer.querySelector('#computerBoard');
 computerBoardDiv.addEventListener('click', playRound);
 
-export {computerBoard, humanBoard}
+export {computerBoard, humanBoard, humanBoardDiv}

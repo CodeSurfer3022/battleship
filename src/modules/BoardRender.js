@@ -1,21 +1,15 @@
-function renderBoard(container, board, id) {
+function renderBoard(boardArray, board) {
 
-    const displayBoard = document.createElement('div');
-    displayBoard.classList.add('board');
-    displayBoard.id = id;
-
-    board.forEach( (position, index = 0) => {
+    console.log(board, boardArray);
+    boardArray.forEach( (value, index = 0) => {
         const cell = document.createElement('div');
         cell.classList.add('cell');
         cell.setAttribute('data-key', index);
-        if(typeof position === 'number') {
+        if(typeof value === 'number') {
             cell.classList.add('present');
         }
-
-        displayBoard.appendChild(cell);
+        board.appendChild(cell);
     })
-    container.appendChild(displayBoard);
-
 }
 
 export default renderBoard;
