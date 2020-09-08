@@ -6,25 +6,46 @@ html {
 body {
     height: 100%;
     width: 100%;
-
+    display: grid;
+    grid-template-rows: 1fr 8fr 1fr;
 }
 
 header {
     background-color: indianred;
-
 }
 
-#ships {
-    display: flex;
-    justify-content: space-evenly;
+main {
+    display: grid;
+    align-items: center;
 }
 
+.containers {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+}
+
+.container {
+    background-color: lightcyan;
+    height: 100%;
+    width: 100%;
+    display: grid;
+    grid-template-rows: 7fr 1fr;
+}
 .board {
-    height: 400px;
-    width: 400px;
-    border: 1px solid black;
+    height: 420px;
+    width: 420px;
+    align-self: center;
+    justify-self: center;
     display: grid;
     grid-template: repeat(10, 1fr) / repeat(10, 1fr);
+    border: 1px solid black;
+}
+
+.board-info {
+    background-color: aqua;
 }
 
 .cell {
@@ -48,9 +69,5 @@ header {
 }
 
 footer {
-    height: 100px;
-    width: 100%;
-    position: absolute;
-    bottom: 0;
     background-color: deepskyblue;
 }
