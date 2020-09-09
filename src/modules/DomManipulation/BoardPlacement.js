@@ -1,20 +1,28 @@
-function placeShip(board, boardDiv, positions) {
+import placeShipDivs from './ShipPlacement';
+
+function placeShipAndShipDivs(board, boardDiv, positions, index, orientation) {
     const length = positions.length;
-    const shipDiv = document.createElement('div');
-    shipDiv.classList.add('ship');
-    shipDiv.style.position = "absolute";
-    console.log(shipDiv);
-    boardDiv.appendChild(shipDiv);
-    board.placeShip(positions)
+    const start = positions[0];
+    const end = positions[length - 1];
+    console.log(index, orientation, length, start, end);
+    placeShipDivs(boardDiv, `${index}`, orientation, length, start, end);
+
+    // board.placeShip(positions)
 }
 
 const shipPlacement = {
     randomPlacement(board, boardDiv) {
         const unavailablePositions = [];
         const ships = [];
+        const orientations = [];
 
         // let's make 5 ships of sizes 1 to 5
         for(let size = 1; size <= 5; size ++) {
+            if(size % 2) {
+                orientations.push('horizontal');
+            } else {
+                orientations.push('vertical');
+            }
             let position = Math.round(Math.random() * 100);
             while(unavailablePositions.includes(position)
                     || position + size - 1 > 100
@@ -33,7 +41,8 @@ const shipPlacement = {
             }
             ships.push(positions);
         }
-        ships.forEach(ship => placeShip(board, boardDiv, ship))
+        console.log(ships, orientations);
+        ships.forEach((ship, index= 0 )=> placeShipAndShipDivs(board, boardDiv, ship, index, orientations[index]));
     }
 }
 
