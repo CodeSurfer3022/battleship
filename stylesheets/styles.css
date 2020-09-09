@@ -39,6 +39,7 @@ main {
     width: 420px;
     align-self: center;
     justify-self: center;
+    position: relative;
     display: grid;
     grid-template: repeat(10, 1fr) / repeat(10, 1fr);
     border: 1px solid black;
@@ -49,10 +50,10 @@ main {
 }
 
 .ship {
-    background-color: darkcyan;
-    z-index: 2;
-    height: 40px;
-    width: 40px;
+    border: 5px solid darkorange;
+    cursor: pointer;
+    position: absolute;
+    z-index: 10;
 }
 
 .cell {
