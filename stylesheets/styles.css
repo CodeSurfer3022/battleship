@@ -48,6 +48,13 @@ main {
     background-color: aqua;
 }
 
+.ship {
+    background-color: darkcyan;
+    z-index: 2;
+    height: 40px;
+    width: 40px;
+}
+
 .cell {
     border: 1px solid black;
 }
