@@ -1,4 +1,4 @@
-import Player from './Player';
+import Player from './Factories/Player';
 import {computerBoard, humanBoard, humanBoardDiv} from '../index';
 
 
