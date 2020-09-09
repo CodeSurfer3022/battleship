@@ -1,13 +1,12 @@
 import Player from './Factories/Player';
-import {computerBoard, humanBoard, humanBoardDiv} from '../index';
-
+import {selfBoard, opponentBoard, selfBoardDiv} from '../index';
 
 const human = Player();
 const computer = Player();
 
 function playRound(e) {
-    if(humanBoard.allShipsSunk() || computerBoard.allShipsSunk()) {
-        const winner = computerBoard.allShipsSunk() ? 'human' : 'computer';
+    if(selfBoard.allShipsSunk() || opponentBoard.allShipsSunk()) {
+        const winner = opponentBoard.allShipsSunk() ? 'human' : 'computer';
         console.log(`winner is ${winner}`);
         return;
     }
@@ -15,13 +14,13 @@ function playRound(e) {
     let cell = e.target;
     let position = cell.getAttribute('data-key');
 
-    attack(human, computerBoard, cell, position);
+    attack(human, opponentBoard, cell, position);
 
     // computer's attack on human
     position = Math.round(Math.random() * 100);
-    cell = humanBoardDiv.querySelector(`div[data-key="${position}"]`);
+    cell = selfBoardDiv.querySelector(`div[data-key="${position}"]`);
 
-    attack(computer, humanBoard, cell, position);
+    attack(computer, selfBoard, cell, position);
 }
 
 function attack(player, board, cell, position){

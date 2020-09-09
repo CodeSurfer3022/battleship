@@ -1,7 +1,6 @@
 import placeShipDivs from './ShipDivPlacement';
 
 function isvalidPosition(unaivalablePositions ,position, size, orientation) {
-    console.log(unaivalablePositions, position, size, orientation);
     if(unaivalablePositions.includes(position)) return false;
 
     if(orientation === 'horizontal') {
@@ -41,10 +40,9 @@ function placeShipAndShipDivs(board, boardDiv, positions, index, orientation) {
     const length = positions.length;
     const start = positions[0];
     const end = positions[length - 1];
-    console.log(index, orientation, length, start, end);
     placeShipDivs(boardDiv, `${index}`, orientation, length, start, end);
 
-    // board.placeShip(positions)
+    board.placeShip(positions)
 }
 
 const shipPlacement = {
@@ -61,8 +59,9 @@ const shipPlacement = {
                 orientations.push('horizontal');
             }
 
+            const orientation = orientations[size - 1];
             let position = Math.round(Math.random() * 100);
-            while(!isvalidPosition(unavailablePositions, position, size, orientations[size -1]))
+            while(!isvalidPosition(unavailablePositions, position, size, orientation))
             {
                 position = Math.round(Math.random() * 100);
             }
@@ -70,7 +69,7 @@ const shipPlacement = {
             for(let i = 0; i < size; i ++) {
                 ship.push(position);
                 unavailablePositions.push(position);
-                if(size % 2) {
+                if(orientation === 'vertical') {
                     position += 10;
                 } else {
                     position ++;
@@ -78,7 +77,6 @@ const shipPlacement = {
             }
             ships.push(ship);
         }
-        console.log(ships, orientations);
         ships.forEach((ship, index= 0 )=> placeShipAndShipDivs(board, boardDiv, ship, index, orientations[index]));
     }
 }

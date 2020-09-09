@@ -2,6 +2,7 @@ function placeShipDivs(container, boxNum, orientation, length, start, end) {
     const div = document.createElement('div');
     div.setAttribute('data-box', boxNum);
     div.classList.add('ship');
+    div.classList.add(orientation);
     div.draggable = true;
 
     div.setAttribute('data-length', length);

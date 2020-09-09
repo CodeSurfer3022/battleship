@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 html {
     height: 100vh;
     width: 100vw;
@@ -34,6 +38,7 @@ main {
     display: grid;
     grid-template-rows: 7fr 1fr;
 }
+
 .board {
     height: 420px;
     width: 420px;
@@ -62,6 +67,14 @@ main {
 
 .cell:hover {
     cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.hovered {
+    border: 2px dashed black;
 }
 
 .present {
