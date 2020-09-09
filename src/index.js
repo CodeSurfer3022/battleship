@@ -11,8 +11,8 @@ const opponentBoardDiv = document.querySelector('#opponent');
 /******************************************************************************************
  * placement of ships
  *******************************************************************************************/
-shipPlacement.randomPlacement(selfBoard);
-shipPlacement.randomPlacement(opponentBoard);
+shipPlacement.randomPlacement(selfBoard, selfBoardDiv);
+shipPlacement.randomPlacement(opponentBoard, opponentBoardDiv);
 
 console.log(selfBoard);
 console.log(opponentBoard);
@@ -25,6 +25,6 @@ console.log(opponentBoard);
 renderBoard(selfBoard.board, selfBoardDiv);
 renderBoard(opponentBoard.board, opponentBoardDiv);
 
-opponentBoardDiv.addEventListener('click', playRound);
+// opponentBoardDiv.addEventListener('click', playRound);
 
 export {opponentBoard, selfBoard, selfBoardDiv}

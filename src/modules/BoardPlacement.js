@@ -1,16 +1,15 @@
-import {selfBoard, selfBoardDiv} from '../index';
-
-function placeShip(board, positions) {
+function placeShip(board, boardDiv, positions) {
     const length = positions.length;
     const shipDiv = document.createElement('div');
     shipDiv.classList.add('ship');
     shipDiv.style.position = "absolute";
-    // selfBoardDiv.appendChild(shipDiv);
+    console.log(shipDiv);
+    boardDiv.appendChild(shipDiv);
     board.placeShip(positions)
 }
 
 const shipPlacement = {
-    randomPlacement(board) {
+    randomPlacement(board, boardDiv) {
         const unavailablePositions = [];
         const ships = [];
 
@@ -34,7 +33,7 @@ const shipPlacement = {
             }
             ships.push(positions);
         }
-        ships.forEach(ship => placeShip(board, ship))
+        ships.forEach(ship => placeShip(board, boardDiv, ship))
     }
 }
 
