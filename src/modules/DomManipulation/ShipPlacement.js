@@ -1,36 +1,86 @@
-function placeShipDivs(container, boxNum, orientation, length, start, end) {
-    const div = document.createElement('div');
-    div.setAttribute('data-box', boxNum);
-    div.classList.add('ship');
-    div.draggable = true;
+import placeShipDivs from './ShipDivPlacement';
 
-    div.setAttribute('data-length', length);
+function isvalidPosition(unaivalablePositions ,position, size, orientation) {
+    console.log(unaivalablePositions, position, size, orientation);
+    if(unaivalablePositions.includes(position)) return false;
 
-    let topOffset, leftOffset;
-    if(orientation === 'vertical') {
-        div.setAttribute('data-top', start);
-        div.setAttribute('data-bottom', end);
+    if(orientation === 'horizontal') {
+        const row = Math.floor(position / 10);
+        const end = (row + 1) * 10;
 
-        div.style.width = '40px';
-        div.style.height = `${40 * length}px`;
+        // checking bounds
+        if(position + size - 1 >= end) {
+            return false
+        }
 
-        topOffset = Math.floor(start/ 10);
-        leftOffset = start % 10;
+        // check if all positions with this starting position are available
+        for(let i = 0; i < size; i ++) {
+            position ++;
+            if(unaivalablePositions.includes(position)) return false;
+        }
+
     } else {
-        div.setAttribute('data-left', start);
-        div.setAttribute('data-right', end);
+        const col = position % 10;
+        const end = col + 90;
 
-        div.style.height = '40px';
-        div.style.width = `${40 * length}px`
+        // checking bounds
+        if(position + (size - 1) * 10 > end) {
+            return false;
+        }
 
-        topOffset = Math.floor(start/ 10);
-        leftOffset = start % 10;
+        // check if all positions with this starting position are available
+        for(let i = 0; i < size; i ++) {
+            position += 10;
+            if(unaivalablePositions.includes(position)) return false;
+        }
     }
-    console.log(div);
-    container.appendChild(div);
-
-    div.style.top = `${topOffset * 42}px`;
-    div.style.left = `${leftOffset * 42}px`;
+    return true;
 }
 
-export default placeShipDivs;
+function placeShipAndShipDivs(board, boardDiv, positions, index, orientation) {
+    const length = positions.length;
+    const start = positions[0];
+    const end = positions[length - 1];
+    console.log(index, orientation, length, start, end);
+    placeShipDivs(boardDiv, `${index}`, orientation, length, start, end);
+
+    // board.placeShip(positions)
+}
+
+const shipPlacement = {
+    randomPlacement(board, boardDiv) {
+        const unavailablePositions = [];
+        const ships = [];
+        const orientations = [];
+
+        // let's make 5 ships of sizes 1 to 5
+        for(let size = 1; size <= 5; size ++) {
+            if(size % 2) {
+                orientations.push('vertical');
+            } else {
+                orientations.push('horizontal');
+            }
+
+            let position = Math.round(Math.random() * 100);
+            while(!isvalidPosition(unavailablePositions, position, size, orientations[size -1]))
+            {
+                position = Math.round(Math.random() * 100);
+            }
+            let ship = [];
+            for(let i = 0; i < size; i ++) {
+                ship.push(position);
+                unavailablePositions.push(position);
+                if(size % 2) {
+                    position += 10;
+                } else {
+                    position ++;
+                }
+            }
+            ships.push(ship);
+        }
+        console.log(ships, orientations);
+        ships.forEach((ship, index= 0 )=> placeShipAndShipDivs(board, boardDiv, ship, index, orientations[index]));
+    }
+}
+
+export default shipPlacement;

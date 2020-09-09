@@ -1,7 +1,7 @@
-import GameBoard from './modules/Factories/GameBoard';
+import {GameBoard} from './modules/Factories/GameBoard';
 import renderBoard from './modules/DomManipulation/BoardDisplay';
 import playRound from './modules/GameLoop';
-import shipPlacement from './modules/DomManipulation/BoardPlacement';
+import shipPlacement from './modules/DomManipulation/ShipPlacement';
 
 const selfBoard = GameBoard();
 const opponentBoard = GameBoard();
