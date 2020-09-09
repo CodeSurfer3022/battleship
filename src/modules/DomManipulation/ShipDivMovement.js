@@ -66,20 +66,21 @@ function handleDrop(ship, cell) {
         const newRow = Math.floor(newTop / 10);
         const newCol = newTop % 10;
 
-        // box.setAttribute('data-top', `${newTop}`);
-        // box.setAttribute('data-bottom', `${newBottom}`);
-        console.log(newRow, newCol);
+        ship.setAttribute('data-top', `${newTop}`);
+        ship.setAttribute('data-bottom', `${newBottom}`);
         placeBox(ship, newRow, newCol);
     } else {
         const newRight = cell.getAttribute('data-key');
-        const newLeft = newRight - 1;
-        if(newRight % 10 === 0) return;
+        const row = Math.floor(newRight / 10);
+        console.log(newRight, row);
+        const newLeft = newRight - (boxLength - 1);
+        if(newLeft < row * 10) return;
 
         const newRow = Math.floor(newLeft / 10);
         const newCol = newLeft % 10;
 
-        // box.setAttribute('data-left', `${newLeft}`);
-        // box.setAttribute('data-right', `${newRight}`);
+        ship.setAttribute('data-left', `${newLeft}`);
+        ship.setAttribute('data-right', `${newRight}`);
         placeBox(ship, newRow, newCol);
     }
 }
@@ -88,7 +89,7 @@ function placeBox(ship, topOffset, leftOffset) {
     console.log(ship, topOffset, leftOffset);
     ship.style.top = `${topOffset * 42}px`;
     ship.style.left = `${leftOffset * 42}px`;
-    console.log(ship);
+    // console.log(ship);
 }
 
 export default addDragEventListeners;

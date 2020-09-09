@@ -1,9 +1,8 @@
 import GameBoard from './modules/Factories/GameBoard';
 import renderBoard from './modules/DomManipulation/BoardDisplay';
-import fun from './modules/DomManipulation/ShipMovement';
 import playRound from './modules/GameLoop';
 import shipPlacement from './modules/DomManipulation/ShipPlacement';
-import addDragEventListeners from './modules/DomManipulation/ShipMovement';
+import addDragEventListeners from './modules/DomManipulation/ShipDivMovement';
 
 const selfBoard = GameBoard();
 const opponentBoard = GameBoard();
