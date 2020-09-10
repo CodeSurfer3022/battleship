@@ -15,6 +15,7 @@ function addDragEventListeners() {
 }
 
 // Dragging functions
+
 function dragStart(e) {
     console.log('start');
     const boxNum = this.getAttribute('data-box');
