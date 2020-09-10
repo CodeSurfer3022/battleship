@@ -1,4 +1,11 @@
-function positionShip(ship, start) {
+function styleShip(ship, orientation, start, end) {
+    if(orientation === 'vertical') {
+        ship.setAttribute('data-top', start);
+        ship.setAttribute('data-bottom', end);
+    } else {
+        ship.setAttribute('data-left', start);
+        ship.setAttribute('data-right', end);
+    }
     const topOffset = Math.floor(start/ 10);
     const leftOffset = start % 10;
 
@@ -6,40 +13,27 @@ function positionShip(ship, start) {
     ship.style.left = `${leftOffset * 42}px`;
 }
 
-function styleShip(ship, orientation, length, start, end) {
-    if(orientation === 'vertical') {
-        ship.setAttribute('data-top', start);
-        ship.setAttribute('data-bottom', end);
-
-        ship.style.width = '40px';
-        ship.style.height = `${40 * length}px`;
-    } else {
-        ship.setAttribute('data-left', start);
-        ship.setAttribute('data-right', end);
-
-        ship.style.height = '40px';
-        ship.style.width = `${40 * length}px`
-    }
-}
-
-function makeShipDiv() {
+function makeShipDiv(orientation, shipNum, length) {
     const div = document.createElement('div');
     div.classList.add('ship');
     div.draggable = true;
+    div.classList.add(orientation);
+    div.setAttribute('data-ship', shipNum);
+    div.setAttribute('data-length', length);
+    if(orientation === 'vertical') {
+        div.style.width = '40px';
+        div.style.height = `${40 * length}px`;
+    } else {
+        div.style.height = '40px';
+        div.style.width = `${40 * length}px`;
+    }
     return div;
 }
 
-function placeShipDivs(container, boxNum, orientation, length, start, end) {
-    const ship = makeShipDiv();
-
-    ship.classList.add(orientation);
-    ship.setAttribute('data-box', boxNum);
-    ship.setAttribute('data-length', length);
-
-    styleShip(ship, orientation, length, start, end);
-    positionShip(ship, start);
-    console.log(ship);
+function placeShipDivs(container, shipNum, orientation, length, start, end) {
+    const ship = makeShipDiv(orientation, shipNum, length);
+    styleShip(ship, orientation, start, end);
     container.appendChild(ship);
 }
 
-export default placeShipDivs;
+export {styleShip, placeShipDivs};

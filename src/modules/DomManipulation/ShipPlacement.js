@@ -1,4 +1,4 @@
-import placeShipDivs from './ShipDivPlacement';
+import {placeShipDivs} from './ShipDivPlacement';
 
 function checkValidHorizontalPosition(unaivalablePositions, position, size) {
     const row = Math.floor(position / 10);
