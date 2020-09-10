@@ -1,7 +1,7 @@
 import GameBoard from './modules/Factories/GameBoard';
 import renderBoard from './modules/DomManipulation/BoardDisplay';
 import playRound from './modules/GameLoop';
-import shipPlacement from './modules/DomManipulation/ShipPlacement';
+import shipAndShipDivPlacement from './modules/DomManipulation/ShipAndShipDivPlacement';
 import addDragEventListeners from './modules/DomManipulation/ShipDivMovement';
 
 const selfBoard = GameBoard();
@@ -12,8 +12,8 @@ const opponentBoardDiv = document.querySelector('#opponent');
 /******************************************************************************************
  * placement of ships
  *******************************************************************************************/
-shipPlacement.randomPlacement(selfBoard, selfBoardDiv);
-shipPlacement.randomPlacement(opponentBoard, opponentBoardDiv);
+shipAndShipDivPlacement.randomPlacement(selfBoard, selfBoardDiv);
+shipAndShipDivPlacement.randomPlacement(opponentBoard, opponentBoardDiv);
 
 console.log(selfBoard);
 console.log(opponentBoard);
