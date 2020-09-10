@@ -1,5 +1,5 @@
 import {selfBoard, selfBoardDiv} from '../../index';
-import {getPositionsFromShipDiv, moveShipDiv} from './ShipDivMovementHandler';
+import {getPositionsFromShipDiv, getStartFromDiv, moveShipDiv} from './ShipDivMovementHandler';
 
 function addDragEventListeners() {
     const ships = selfBoardDiv.querySelectorAll('.ship');
@@ -60,13 +60,20 @@ function handleDrop(ship, cell) {
     // move the div
     const orientation = [...ship.classList].includes('horizontal') ? 'horizontal' : 'vertical';
     const length = ship.getAttribute('data-length');
-    const start = moveShipDiv(ship, cell, orientation, length);
 
-    // update board array
-    // const shipIndex = ship.getAttribute('data-ship');
-    // const positions = getPositionsFromShipDiv(orientation, length, start);
-    // console.log(start, shipIndex, positions);
-    // selfBoard.updateShip(shipIndex, positions);
+    // get start and positions
+    const oldStart = getStartFromDiv(ship, orientation);
+    const oldPositions = getPositionsFromShipDiv(orientation, length, +oldStart);
+
+    moveShipDiv(ship, cell, orientation, length);
+
+    // get start and positions
+    const newStart = getStartFromDiv(ship, orientation);
+    const newPositions = getPositionsFromShipDiv(orientation, length, +newStart);
+
+    const shipIndex = ship.getAttribute('data-ship');
+    console.log(shipIndex, oldPositions, newPositions);
+    // selfBoard.updateShip(shipIndex, oldPositions, newPositions);
 }
 
 export default addDragEventListeners;

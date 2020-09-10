@@ -7,7 +7,6 @@ function moveShipDiv(ship, cell, orientation, length) {
         if(newTop < 0) return;
 
         styleShip(ship, 'vertical', newTop, newBottom);
-        return newTop;
     } else {
         const newRight = cell.getAttribute('data-key');
         const row = Math.floor(newRight / 10);
@@ -15,8 +14,14 @@ function moveShipDiv(ship, cell, orientation, length) {
         if(newLeft < row * 10) return;
 
         styleShip(ship, 'horizontal', newLeft, newRight);
-        return newLeft;
     }
+}
+
+function getStartFromDiv(ship, orientation) {
+    if(orientation === 'vertical') {
+        return ship.getAttribute('data-top');
+    }
+    return ship.getAttribute('data-left');
 }
 
 function getPositionsFromShipDiv(orientation, length, start) {
@@ -32,4 +37,4 @@ function getPositionsFromShipDiv(orientation, length, start) {
     return positions;
 }
 
-export  {moveShipDiv, getPositionsFromShipDiv};
+export  {moveShipDiv, getPositionsFromShipDiv, getStartFromDiv};
