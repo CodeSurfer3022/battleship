@@ -9,10 +9,9 @@ function GameBoard() {
         boardArray.push(undefined);
     }
 
-    const placeShip = (positions) => {
+    const placeShip = (index, positions) => {
         if(positions.every(position => boardArray[position] === undefined)) {
             const ship = Ship(positions);
-            let index = ships.length;
             positions.forEach(position => boardArray[position] = index);
             ships.push(ship);
         } else {
@@ -20,19 +19,17 @@ function GameBoard() {
         }
     }
 
-    const updateShip = (index, positions) => {
+    const updateShip = (index, oldPositions, newPositions) => {
         // remove ship from old position
-        boardArray.forEach(position => {
-            if(position === index) {
-                position = undefined;
-            }
-        });
+        oldPositions.forEach(position => boardArray[position] = undefined);
 
+        ships.forEach(ship => console.log(ship.getPositions()));
         // replace old ship with new ship
-        ships[index] = Ship(positions);
+        ships[index] = Ship(newPositions);
 
+        ships.forEach(ship => console.log(ship.getPositions()));
         // place this ship on the boardArray
-        placeShip(positions);
+        newPositions.forEach(position => boardArray[position] = index);
     }
 
     const receiveAttack = (position) => {

@@ -69,11 +69,11 @@ function handleDrop(ship, cell) {
 
     // get start and positions
     const newStart = getStartFromDiv(ship, orientation);
-    const newPositions = getPositionsFromShipDiv(orientation, length, +newStart);
+    const newPositions = getPositionsFromShipDiv(orientation, length, newStart);
 
-    const shipIndex = ship.getAttribute('data-ship');
+    const shipIndex = parseInt(ship.getAttribute('data-ship'));
     console.log(shipIndex, oldPositions, newPositions);
-    // selfBoard.updateShip(shipIndex, oldPositions, newPositions);
+    selfBoard.updateShip(shipIndex, oldPositions, newPositions);
 }
 
 export default addDragEventListeners;

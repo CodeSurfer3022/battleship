@@ -18,10 +18,13 @@ function moveShipDiv(ship, cell, orientation, length) {
 }
 
 function getStartFromDiv(ship, orientation) {
+    let start;
     if(orientation === 'vertical') {
-        return ship.getAttribute('data-top');
+        start = parseInt(ship.getAttribute('data-top'));
+    } else {
+        start = parseInt(ship.getAttribute('data-left'));
     }
-    return ship.getAttribute('data-left');
+    return start;
 }
 
 function getPositionsFromShipDiv(orientation, length, start) {

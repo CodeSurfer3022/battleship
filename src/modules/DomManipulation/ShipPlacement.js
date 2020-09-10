@@ -89,7 +89,7 @@ const shipPlacement = {
             const start = ship[0];
             const end = ship[length - 1];
             placeShipDivs(boardDiv, `${index}`, orientations[index], length, start, end);
-            board.placeShip(ship);
+            board.placeShip(index, ship);
         });
     }
 }
