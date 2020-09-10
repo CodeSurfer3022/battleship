@@ -81,21 +81,17 @@ function makeShips() {
     return {ships, orientations};
 }
 
-const shipAndShipDivPlacement = {
+const shipPlacement = {
     randomPlacement(board, boardDiv) {
         const {ships, orientations} = makeShips();
-        ships.forEach((ship, index= 0 )=>
-            this.placeShipAndShipDivs(board, boardDiv, ship, index, orientations[index])
-        );
-    },
-    placeShipAndShipDivs(board, boardDiv, positions, index, orientation) {
-        const length = positions.length;
-        const start = positions[0];
-        const end = positions[length - 1];
-        placeShipDivs(boardDiv, `${index}`, orientation, length, start, end);
-
-        board.placeShip(positions)
+        ships.forEach((ship, index= 0 )=> {
+            const length = ship.length;
+            const start = ship[0];
+            const end = ship[length - 1];
+            placeShipDivs(boardDiv, `${index}`, orientations[index], length, start, end);
+            board.placeShip(ship);
+        });
     }
 }
 
-export default shipAndShipDivPlacement;
+export default shipPlacement;
