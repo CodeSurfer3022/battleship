@@ -4,6 +4,16 @@ import {selfBoard, opponentBoard, selfBoardDiv} from '../index';
 const human = Player();
 const computer = Player();
 
+function getComputerAttackPosition() {
+    let position = Math.floor(Math.random() * 100);
+    let cellValue = selfBoard.boardArray[position];
+    while(cellValue !== undefined) {
+        position = Math.floor(Math.random() * 100);
+        cellValue = selfBoard.boardArray[position];
+    }
+    return position;
+}
+
 function playRound(e) {
     if(selfBoard.allShipsSunk() || opponentBoard.allShipsSunk()) {
         const winner = opponentBoard.allShipsSunk() ? 'human' : 'computer';
@@ -18,7 +28,8 @@ function playRound(e) {
     attack(human, opponentBoard, cell, position);
 
     // computer's attack on human
-    position = Math.floor(Math.random() * 100);
+    position = getComputerAttackPosition();
+    console.log(position);
     cell = selfBoardDiv.querySelector(`div[data-key="${position}"]`);
 
     attack(computer, selfBoard, cell, position);
