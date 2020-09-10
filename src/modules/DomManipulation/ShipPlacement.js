@@ -1,5 +1,3 @@
-import {placeShipDivs} from './ShipDivPlacement';
-
 function checkValidHorizontalPosition(unaivalablePositions, position, size) {
     const row = Math.floor(position / 10);
     const end = (row + 1) * 10;
@@ -82,15 +80,12 @@ function makeShips() {
 }
 
 const shipPlacement = {
-    randomPlacement(board, boardDiv) {
+    randomPlacement(board) {
         const {ships, orientations} = makeShips();
         ships.forEach((ship, index= 0 )=> {
-            const length = ship.length;
-            const start = ship[0];
-            const end = ship[length - 1];
-            placeShipDivs(boardDiv, `${index}`, orientations[index], length, start, end);
             board.placeShip(index, ship);
         });
+        return {ships, orientations};
     }
 }
 

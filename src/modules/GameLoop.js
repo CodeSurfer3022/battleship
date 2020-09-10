@@ -14,10 +14,11 @@ function playRound(e) {
     let cell = e.target;
     let position = cell.getAttribute('data-key');
 
+    console.log(cell);
     attack(human, opponentBoard, cell, position);
 
     // computer's attack on human
-    position = Math.round(Math.random() * 100);
+    position = Math.floor(Math.random() * 100);
     cell = selfBoardDiv.querySelector(`div[data-key="${position}"]`);
 
     attack(computer, selfBoard, cell, position);
@@ -25,7 +26,7 @@ function playRound(e) {
 
 function attack(player, board, cell, position){
     player.attack(board, position);
-    const result = board.board[position];
+    const result = board.boardArray[position];
     if (result === 'miss') {
         cell.classList.add('miss');
     } else if (result === 'hit'){

@@ -3,6 +3,7 @@ import renderBoard from './modules/DomManipulation/BoardDisplay';
 import playRound from './modules/GameLoop';
 import shipPlacement from './modules/DomManipulation/ShipPlacement';
 import addDragEventListeners from './modules/DomManipulation/ShipDivMovement';
+import {placeShipDivs} from './modules/DomManipulation/ShipDivPlacement';
 
 const selfBoard = GameBoard();
 const opponentBoard = GameBoard();
@@ -12,8 +13,16 @@ const opponentBoardDiv = document.querySelector('#opponent');
 /******************************************************************************************
  * placement of ships
  *******************************************************************************************/
-shipPlacement.randomPlacement(selfBoard, selfBoardDiv);
-// shipPlacement.randomPlacement(opponentBoard, opponentBoardDiv);
+const {ships, orientations} = shipPlacement.randomPlacement(selfBoard);
+
+ships.forEach((ship, index= 0 )=> {
+    const length = ship.length;
+    const start = ship[0];
+    const end = ship[length - 1];
+    placeShipDivs(selfBoardDiv, `${index}`, orientations[index], length, start, end);
+});
+
+shipPlacement.randomPlacement(opponentBoard, opponentBoardDiv);
 
 console.log(selfBoard);
 console.log(opponentBoard);
@@ -25,6 +34,6 @@ console.log(opponentBoard);
 renderBoard(selfBoard.boardArray, selfBoardDiv);
 renderBoard(opponentBoard.boardArray, opponentBoardDiv);
 
-// opponentBoardDiv.addEventListener('click', playRound);
+opponentBoardDiv.addEventListener('click', playRound);
 addDragEventListeners();
 export {opponentBoard, selfBoard, selfBoardDiv}
