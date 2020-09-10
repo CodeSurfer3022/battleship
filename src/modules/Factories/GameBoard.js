@@ -1,55 +1,48 @@
 const Ship = require('./Ship');
 
-function arePositionsValid(positions) {
-    let isHorizontal = true;
-    for(let i = 1; i < positions.length; i ++) {
-        if(positions[i] - positions[i - 1] !== 1) {
-            isHorizontal = false;
-            break;
-        }
-    }
-
-    let isVertical = true;
-    for(let i = 1; i < positions.length; i ++) {
-        if(positions[i] - positions[i - 1] !== 10) {
-            isVertical = false;
-            break;
-        }
-    }
-
-    return isHorizontal || isVertical;
-}
-
 function GameBoard() {
-    const board = [];
+    const boardArray = [];
     const ships = [];
 
     // Initialize an empty board of size 10 * 10
     for(let i = 0; i < 100; i ++) {
-        board.push(undefined);
+        boardArray.push(undefined);
     }
 
     const placeShip = (positions) => {
-        if(positions.every(position => board[position] === undefined) &&
-            arePositionsValid(positions)
-        ) {
+        if(positions.every(position => boardArray[position] === undefined)) {
             const ship = Ship(positions);
             let index = ships.length;
-            positions.forEach(position => board[position] = index);
+            positions.forEach(position => boardArray[position] = index);
             ships.push(ship);
         } else {
             console.log("one or more positions are occupied")
         }
     }
 
+    const updateShip = (index, positions) => {
+        // remove ship from old position
+        boardArray.forEach(position => {
+            if(position === index) {
+                position = undefined;
+            }
+        });
+
+        // replace old ship with new ship
+        ships[index] = Ship(positions);
+
+        // place this ship on the boardArray
+        placeShip(positions);
+    }
+
     const receiveAttack = (position) => {
-        if(board[position] === undefined) {
-            board[position] = 'miss';
-        } else if (board[position] !== 'miss' && board[position] !== 'hit'){
-            const index = board[position];
+        if(boardArray[position] === undefined) {
+            boardArray[position] = 'miss';
+        } else if (boardArray[position] !== 'miss' && boardArray[position] !== 'hit'){
+            const index = boardArray[position];
             const hitShip = ships[index];
             hitShip.hit(position);
-            board[position] = 'hit';
+            boardArray[position] = 'hit';
         }
     }
 
@@ -58,9 +51,10 @@ function GameBoard() {
     }
 
     return {
-        board,
+        boardArray,
         ships,
         placeShip,
+        updateShip,
         receiveAttack,
         allShipsSunk
     }

@@ -1,4 +1,5 @@
-import {selfBoardDiv} from '../../index';
+import {selfBoard, selfBoardDiv} from '../../index';
+import {getPositionsFromShipDiv, moveShipDiv} from './ShipDivMovementHandler';
 
 function addDragEventListeners() {
     const ships = selfBoardDiv.querySelectorAll('.ship');
@@ -18,8 +19,8 @@ function addDragEventListeners() {
 
 function dragStart(e) {
     console.log('start');
-    const boxNum = this.getAttribute('data-box');
-    e.dataTransfer.setData("text", boxNum);
+    const shipNum = this.getAttribute('data-ship');
+    e.dataTransfer.setData("text", shipNum);
     setTimeout(() => this.classList.add('hidden'), 0);
 }
 
@@ -49,47 +50,23 @@ function dragDrop(e) {
     const data = e.dataTransfer.getData("text");
     console.log(data);
     this.className = 'cell';
-    const ship = selfBoardDiv.querySelector(`.ship[data-box='${data}']`);
+    const ship = selfBoardDiv.querySelector(`.ship[data-ship='${data}']`);
     const cell = this;
     console.log(ship, cell);
     handleDrop(ship, cell);
 }
 
 function handleDrop(ship, cell) {
-    const orientation = [...ship.classList].includes('horizontal') ? 'h' : 'v';
-    const boxLength = ship.getAttribute('data-length');
-    if(orientation === 'v') {
-        const newBottom = cell.getAttribute('data-key');
-        const newTop = newBottom - (boxLength - 1) * 10;
-        if(newTop < 0) return;
+    // move the div
+    const orientation = [...ship.classList].includes('horizontal') ? 'horizontal' : 'vertical';
+    const length = ship.getAttribute('data-length');
+    const start = moveShipDiv(ship, cell, orientation, length);
 
-        const newRow = Math.floor(newTop / 10);
-        const newCol = newTop % 10;
-
-        ship.setAttribute('data-top', `${newTop}`);
-        ship.setAttribute('data-bottom', `${newBottom}`);
-        placeBox(ship, newRow, newCol);
-    } else {
-        const newRight = cell.getAttribute('data-key');
-        const row = Math.floor(newRight / 10);
-        console.log(newRight, row);
-        const newLeft = newRight - (boxLength - 1);
-        if(newLeft < row * 10) return;
-
-        const newRow = Math.floor(newLeft / 10);
-        const newCol = newLeft % 10;
-
-        ship.setAttribute('data-left', `${newLeft}`);
-        ship.setAttribute('data-right', `${newRight}`);
-        placeBox(ship, newRow, newCol);
-    }
-}
-
-function placeBox(ship, topOffset, leftOffset) {
-    console.log(ship, topOffset, leftOffset);
-    ship.style.top = `${topOffset * 42}px`;
-    ship.style.left = `${leftOffset * 42}px`;
-    // console.log(ship);
+    // update board array
+    // const shipIndex = ship.getAttribute('data-ship');
+    // const positions = getPositionsFromShipDiv(orientation, length, start);
+    // console.log(start, shipIndex, positions);
+    // selfBoard.updateShip(shipIndex, positions);
 }
 
 export default addDragEventListeners;

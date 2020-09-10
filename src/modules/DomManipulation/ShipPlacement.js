@@ -4,7 +4,7 @@ function checkValidHorizontalPosition(unaivalablePositions, position, size) {
     const row = Math.floor(position / 10);
     const end = (row + 1) * 10;
 
-    // checking bounds
+    // checking if last position will be in the same row
     if(position + size - 1 >= end) {
         return false
     }
@@ -22,7 +22,7 @@ function checkValidVerticalPosition(unaivalablePositions, position, size) {
     const col = position % 10;
     const end = col + 90;
 
-    // checking bounds
+    // checking if last position will be in the same column
     if(position + (size - 1) * 10 > end) {
         return false;
     }
@@ -47,10 +47,10 @@ function isvalidPosition(unaivalablePositions ,position, size, orientation) {
 }
 
 function getValidPosition(unavailablePositions, size, orientation) {
-    let position = Math.round(Math.random() * 100);
+    let position = Math.floor(Math.random() * 100);
     while(!isvalidPosition(unavailablePositions, position, size, orientation))
     {
-        position = Math.round(Math.random() * 100);
+        position = Math.floor(Math.random() * 100);
     }
     return position;
 }
