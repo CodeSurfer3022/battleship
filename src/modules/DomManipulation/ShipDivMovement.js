@@ -1,5 +1,5 @@
 import {selfBoard, selfBoardDiv} from '../../index';
-import {getPositionsFromShipDiv, getStartFromDiv, moveShipDiv} from './ShipDivMovementHandler';
+import {areValidPositions, getPositionsFromShipDiv, moveShipDiv} from './ShipDivMovementHandler';
 
 function addDragEventListeners() {
     const ships = selfBoardDiv.querySelectorAll('.ship');
@@ -61,15 +61,22 @@ function handleDrop(ship, cell) {
     const orientation = [...ship.classList].includes('horizontal') ? 'horizontal' : 'vertical';
     const length = ship.getAttribute('data-length');
 
+    // check if moving this div will cause any of the positions to overlap
+    const newEnd = parseInt(cell.getAttribute('data-key'));
+    const newPositions = getPositionsFromShipDiv(orientation, length, newEnd);
+    console.log(newEnd, newPositions);
+
+    if(!areValidPositions(newPositions)) return;
+
+
     // get start and positions
-    const oldStart = getStartFromDiv(ship, orientation);
-    const oldPositions = getPositionsFromShipDiv(orientation, length, +oldStart);
+    const oldEnd = orientation === 'horizontal' ?
+        parseInt(ship.getAttribute('data-right'))
+        : parseInt(ship.getAttribute('data-bottom'));
+    const oldPositions = getPositionsFromShipDiv(orientation, length, oldEnd);
+    console.log(oldEnd, oldPositions);
 
     moveShipDiv(ship, cell, orientation, length);
-
-    // get start and positions
-    const newStart = getStartFromDiv(ship, orientation);
-    const newPositions = getPositionsFromShipDiv(orientation, length, newStart);
 
     const shipIndex = parseInt(ship.getAttribute('data-ship'));
     console.log(shipIndex, oldPositions, newPositions);

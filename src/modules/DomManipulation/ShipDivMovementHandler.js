@@ -1,4 +1,5 @@
 import {styleShip} from './ShipDivPlacement';
+import {selfBoard} from '../../index';
 
 function moveShipDiv(ship, cell, orientation, length) {
     if(orientation === 'vertical') {
@@ -17,27 +18,21 @@ function moveShipDiv(ship, cell, orientation, length) {
     }
 }
 
-function getStartFromDiv(ship, orientation) {
-    let start;
-    if(orientation === 'vertical') {
-        start = parseInt(ship.getAttribute('data-top'));
-    } else {
-        start = parseInt(ship.getAttribute('data-left'));
-    }
-    return start;
-}
-
-function getPositionsFromShipDiv(orientation, length, start) {
+function getPositionsFromShipDiv(orientation, length, end) {
     const positions = [];
-    let position = start;
+    let position = end;
 
-    const increment = orientation === 'vertical' ? 10 : 1;
+    const decrement = orientation === 'vertical' ? 10 : 1;
 
     for(let i = 0; i < length; i ++) {
         positions.push(position);
-        position += increment;
+        position -= decrement;
     }
     return positions;
 }
 
-export  {moveShipDiv, getPositionsFromShipDiv, getStartFromDiv};
+function areValidPositions(positions) {
+    return positions.every(position => selfBoard.boardArray[position] === undefined);
+}
+
+export  {moveShipDiv, getPositionsFromShipDiv, areValidPositions};
