@@ -31,8 +31,13 @@ function getPositionsFromShipDiv(orientation, length, end) {
     return positions;
 }
 
-function areValidPositions(positions) {
-    return positions.every(position => selfBoard.boardArray[position] === undefined);
+function areValidPositions(newPositions, oldPositions) {
+    return newPositions.every(newPosition => {
+        // each position must either be empty or one of previous positions
+        return (selfBoard.boardArray[newPosition] === undefined
+                || oldPositions.includes(newPosition)
+        )
+    });
 }
 
 export  {moveShipDiv, getPositionsFromShipDiv, areValidPositions};

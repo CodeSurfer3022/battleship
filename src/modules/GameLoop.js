@@ -7,7 +7,7 @@ const computer = Player();
 function getComputerAttackPosition() {
     let position = Math.floor(Math.random() * 100);
     let cellValue = selfBoard.boardArray[position];
-    while(cellValue !== undefined) {
+    while(cellValue === 'miss' || cellValue === 'hit') {
         position = Math.floor(Math.random() * 100);
         cellValue = selfBoard.boardArray[position];
     }

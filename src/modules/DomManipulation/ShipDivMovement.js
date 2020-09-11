@@ -61,20 +61,19 @@ function handleDrop(ship, cell) {
     const orientation = [...ship.classList].includes('horizontal') ? 'horizontal' : 'vertical';
     const length = ship.getAttribute('data-length');
 
-    // check if moving this div will cause any of the positions to overlap
-    const newEnd = parseInt(cell.getAttribute('data-key'));
-    const newPositions = getPositionsFromShipDiv(orientation, length, newEnd);
-    console.log(newEnd, newPositions);
-
-    if(!areValidPositions(newPositions)) return;
-
-
-    // get start and positions
+    // get old end and positions
     const oldEnd = orientation === 'horizontal' ?
         parseInt(ship.getAttribute('data-right'))
         : parseInt(ship.getAttribute('data-bottom'));
     const oldPositions = getPositionsFromShipDiv(orientation, length, oldEnd);
     console.log(oldEnd, oldPositions);
+
+    // check if moving this div will cause any of the positions to overlap
+    const newEnd = parseInt(cell.getAttribute('data-key'));
+    const newPositions = getPositionsFromShipDiv(orientation, length, newEnd);
+
+    if(!areValidPositions(newPositions, oldPositions)) return;
+    console.log(newEnd, newPositions);
 
     moveShipDiv(ship, cell, orientation, length);
 
