@@ -25,6 +25,8 @@ function playRound(e) {
 
     const computerResult = attack(computer, selfBoard, cell, position);
     console.log(computerResult);
+
+    // Update hits and misses so computer can make intelligent guesses next time
     if(computerResult === 'hit') {
         computerAttack.updateHits(position);
     } else {

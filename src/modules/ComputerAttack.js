@@ -13,24 +13,22 @@ function validatePosition(direction, hit, position) {
     return position;
 }
 
-function getPositionBasedOnHit(hit, direction) {
-    let position;
+function getNextPositionInDirection(hit, direction) {
     switch (direction) {
         case 'up':
-            position = hit - 10;
-            break;
-
+            return hit - 10;
         case 'down':
-            position =  hit + 10;
-            break;
-
+            return hit + 10;
         case 'left':
-            position =  hit - 1;
-            break;
-
+            return hit - 1;
         case 'right':
-            position =  hit + 1;
+            return hit + 1;
     }
+}
+
+function getPositionBasedOnHit(hit, direction) {
+    let position = getNextPositionInDirection(hit, direction)
+
     return validatePosition(direction, hit, position);
 }
 
