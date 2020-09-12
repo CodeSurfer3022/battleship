@@ -1,18 +1,10 @@
 import Player from './Factories/Player';
 import {selfBoard, opponentBoard, selfBoardDiv} from '../index';
+import ComputerAttack from './ComputerAttack';
 
 const human = Player();
 const computer = Player();
-
-function getComputerAttackPosition() {
-    let position = Math.floor(Math.random() * 100);
-    let cellValue = selfBoard.boardArray[position];
-    while(cellValue === 'miss' || cellValue === 'hit') {
-        position = Math.floor(Math.random() * 100);
-        cellValue = selfBoard.boardArray[position];
-    }
-    return position;
-}
+const computerAttack = ComputerAttack();
 
 function playRound(e) {
     if(selfBoard.allShipsSunk() || opponentBoard.allShipsSunk()) {
@@ -24,15 +16,20 @@ function playRound(e) {
     let cell = e.target;
     let position = cell.getAttribute('data-key');
 
-    console.log(cell);
     attack(human, opponentBoard, cell, position);
 
     // computer's attack on human
-    position = getComputerAttackPosition();
+    position = computerAttack.getComputerAttackPosition();
     console.log(position);
     cell = selfBoardDiv.querySelector(`div[data-key="${position}"]`);
 
-    attack(computer, selfBoard, cell, position);
+    const computerResult = attack(computer, selfBoard, cell, position);
+    console.log(computerResult);
+    if(computerResult === 'hit') {
+        computerAttack.updateHits(position);
+    } else {
+        computerAttack.updateMiss(position);
+    }
 }
 
 function attack(player, board, cell, position){
@@ -43,6 +40,7 @@ function attack(player, board, cell, position){
     } else if (result === 'hit'){
         cell.classList.add('hit');
     }
+    return result;
 }
 
 export default playRound;
