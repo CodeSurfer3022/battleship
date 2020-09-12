@@ -10,25 +10,35 @@ function validatePosition(direction, hit, position) {
         const positionRow = Math.floor(position / 10);
         if(hitRow !== positionRow) return undefined;
     }
-    return position;
-}
 
-function getNextPositionInDirection(hit, direction) {
-    switch (direction) {
-        case 'up':
-            return hit - 10;
-        case 'down':
-            return hit + 10;
-        case 'left':
-            return hit - 1;
-        case 'right':
-            return hit + 1;
+    // check if position had already been attacked
+    let nextPosition = position
+    let cellValue = selfBoard.boardArray[nextPosition];
+    while(cellValue === 'miss' || cellValue === 'hit') {
+        nextPosition = getPositionBasedOnHit(position, direction);
+        cellValue = selfBoard.boardArray[nextPosition];
     }
+    return nextPosition;
 }
 
 function getPositionBasedOnHit(hit, direction) {
-    let position = getNextPositionInDirection(hit, direction)
+    let position;
+    switch (direction) {
+        case 'up':
+            position = hit - 10;
+            break;
 
+        case 'down':
+            position = hit + 10;
+            break;
+
+        case 'left':
+            position = hit - 1;
+            break;
+
+        case 'right':
+            position = hit + 1;
+    }
     return validatePosition(direction, hit, position);
 }
 
@@ -64,9 +74,16 @@ function ComputerAttack() {
     const getComputerAttackPosition = () => {
         if(hit) {
             console.log('inside ' + hit + directions);
+
+            // get a valid position i.e on board and on same column for vertical ships
             let position =  getPositionBasedOnHit(hit, directions[0]);
             while (!position) {
                 directions.shift();
+                if(directions.length === 0) {
+                    hit = undefined;
+                    directions = ['up', 'down', 'left', 'right'];
+                    return getRandomPosition();
+                }
                 position = getPositionBasedOnHit(hit, directions[0]);
             }
             return position;
