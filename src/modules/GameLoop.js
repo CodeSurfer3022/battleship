@@ -16,6 +16,9 @@ function playRound(e) {
     let cell = e.target;
     let position = cell.getAttribute('data-key');
 
+    // Don't play round if user attacks already attacked position
+    if([...cell.classList].includes('hit') || [...cell.classList].includes('miss')) return;
+
     attack(human, opponentBoard, cell, position);
 
     // computer's attack on human
