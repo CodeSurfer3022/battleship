@@ -1,3 +1,3 @@
 # Battleship
 
-Live demo: https://codesurfer3022.github.io/battleship/
+Live demo: https://chandraprakash-dev.github.io/battleship/
