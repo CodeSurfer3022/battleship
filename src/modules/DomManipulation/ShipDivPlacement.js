@@ -1,3 +1,5 @@
+import {selfBoardDiv} from "../../index";
+
 function styleShip(ship, orientation, start, end) {
     if(orientation === 'vertical') {
         ship.setAttribute('data-top', start);
@@ -36,4 +38,13 @@ function placeShipDivs(container, shipNum, orientation, length, start, end) {
     container.appendChild(ship);
 }
 
-export {styleShip, placeShipDivs};
+function placeAllShipDivs(ships, orientations) {
+    ships.forEach((ship, index= 0 )=> {
+        const length = ship.length;
+        const start = ship[0];
+        const end = ship[length - 1];
+        placeShipDivs(selfBoardDiv, `${index}`, orientations[index], length, start, end);
+    });
+}
+
+export {styleShip, placeAllShipDivs};
