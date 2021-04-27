@@ -3,7 +3,7 @@ import renderBoard from './modules/DomManipulation/BoardDisplay';
 import playRound from './modules/GameLoop';
 import shipPlacement from './modules/DomManipulation/ShipPlacement';
 import addDragEventListeners from './modules/DomManipulation/ShipDivMovement';
-import {placeAllShipDivs} from './modules/DomManipulation/ShipDivPlacement';
+import {placeAllShipDivs, removeAllShipDivs} from './modules/DomManipulation/ShipDivPlacement';
 
 const selfBoard = GameBoard();
 const opponentBoard = GameBoard();
@@ -37,6 +37,9 @@ export {opponentBoard, selfBoard, selfBoardDiv}
  *******************************************************************************************/
 const randomButton = document.querySelector('#randomButton');
 randomButton.addEventListener('click', () => {
+    shipPlacement.removeShips(selfBoard);
+    removeAllShipDivs();
+
     let res = shipPlacement.randomPlacement(selfBoard);
     placeAllShipDivs(res.ships, res.orientations);
 })

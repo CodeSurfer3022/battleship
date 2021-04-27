@@ -47,4 +47,9 @@ function placeAllShipDivs(ships, orientations) {
     });
 }
 
-export {styleShip, placeAllShipDivs};
+function removeAllShipDivs() {
+    const shipDivs = document.querySelectorAll('.ship');
+    shipDivs.forEach(shipDiv => selfBoardDiv.removeChild(shipDiv));
+}
+
+export {styleShip, placeAllShipDivs, removeAllShipDivs};

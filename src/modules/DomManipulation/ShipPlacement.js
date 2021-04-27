@@ -86,6 +86,9 @@ const shipPlacement = {
             board.placeShip(index, ship);
         });
         return {ships, orientations};
+    },
+    removeShips(board) {
+        board.removeAllShips();
     }
 }
 

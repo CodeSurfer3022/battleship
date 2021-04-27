@@ -19,6 +19,12 @@ function GameBoard() {
         }
     }
 
+    const removeAllShips = () => {
+        for(let i = 0; i < 100; i ++) {
+            boardArray.push(undefined);
+        }
+    }
+
     const updateShip = (index, oldPositions, newPositions) => {
         // remove ship from old position
         oldPositions.forEach(position => boardArray[position] = undefined);
@@ -51,6 +57,7 @@ function GameBoard() {
         boardArray,
         ships,
         placeShip,
+        removeAllShips,
         updateShip,
         receiveAttack,
         allShipsSunk
