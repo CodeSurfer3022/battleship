@@ -2,7 +2,7 @@ import GameBoard from './modules/Factories/GameBoard';
 import renderBoard from './modules/DomManipulation/BoardDisplay';
 import playRound from './modules/GameLoop';
 import shipPlacement from './modules/DomManipulation/ShipPlacement';
-import addDragEventListeners from './modules/DomManipulation/ShipDivMovement';
+import {addDragEventListeners, removeDragEventListeners} from './modules/DomManipulation/ShipDivMovement';
 import {placeAllShipDivs, removeAllShipDivs} from './modules/DomManipulation/ShipDivPlacement';
 
 const selfBoard = GameBoard();
@@ -42,4 +42,7 @@ randomButton.addEventListener('click', () => {
 
     let res = shipPlacement.randomPlacement(selfBoard);
     placeAllShipDivs(res.ships, res.orientations);
-})
+});
+
+const startButton = document.querySelector('#startButton');
+startButton.addEventListener('click', removeDragEventListeners);

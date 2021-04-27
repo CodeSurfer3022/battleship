@@ -15,6 +15,20 @@ function addDragEventListeners() {
     cells.forEach(cell => cell.addEventListener('drop', dragDrop));
 }
 
+function removeDragEventListeners() {
+    const ships = selfBoardDiv.querySelectorAll('.ship');
+    const cells = selfBoardDiv.querySelectorAll('.cell');
+    // draggable event listeners
+    ships.forEach(ship => ship.removeEventListener('dragstart', dragStart));
+    ships.forEach(ship => ship.removeEventListener('dragend', dragEnd));
+
+    // cell event listeners
+    cells.forEach(cell => cell.removeEventListener('dragover', dragOver));
+    cells.forEach(cell => cell.removeEventListener('dragenter', dragEnter));
+    cells.forEach(cell => cell.removeEventListener('dragleave', dragLeave));
+    cells.forEach(cell => cell.removeEventListener('drop', dragDrop));
+}
+
 // Dragging functions
 
 function dragStart(e) {
@@ -47,6 +61,7 @@ function dragLeave() {
 function dragDrop(e) {
     console.log('drop');
     e.preventDefault();
+    console.log(e);
     const data = e.dataTransfer.getData("text");
     console.log(data);
     this.className = 'cell';
@@ -82,4 +97,4 @@ function handleDrop(ship, cell) {
     selfBoard.updateShip(shipIndex, oldPositions, newPositions);
 }
 
-export default addDragEventListeners;
+export {addDragEventListeners, removeDragEventListeners};
