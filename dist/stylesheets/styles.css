@@ -93,6 +93,6 @@ footer {
     color: #e25555;
 }
 
-#opponent.wait {
+.wait {
     opacity: 0.4;
 }

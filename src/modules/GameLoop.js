@@ -34,6 +34,7 @@ function computerTurn() {
     } else {
         computerAttack.updateMiss(position);
     }
+    selfBoardDiv.classList.add('wait');
     opponentBoardDiv.classList.remove('wait');
 }
 
@@ -55,6 +56,7 @@ function playRound(e) {
     if([...cell.classList].includes('hit') || [...cell.classList].includes('miss')) return;
 
     attack(human, opponentBoard, cell, position);
+    selfBoardDiv.classList.remove('wait');
     opponentBoardDiv.classList.add('wait');
     setTimeout(computerTurn,2000);
 }

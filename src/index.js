@@ -57,6 +57,7 @@ const startButton = document.querySelector('#startButton');
 startButton.addEventListener('click', () => {
     const turnInfo = document.querySelector('#turnInfo');
     turnInfo.classList.remove('hidden');
+    selfBoardDiv.classList.add('wait');
     opponentBoardDiv.addEventListener('click', playRound);
     removeDragEventListeners();
     gameControls.classList.add('hidden');
