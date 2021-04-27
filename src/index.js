@@ -33,7 +33,7 @@ renderBoard(selfBoard.boardArray, selfBoardDiv);
 renderBoard(opponentBoard.boardArray, opponentBoardDiv);
 
 addDragEventListeners();
-export {opponentBoard, selfBoard, selfBoardDiv}
+export {opponentBoard, selfBoard, opponentBoardDiv, selfBoardDiv}
 
 /******************************************************************************************
  * handle events for randomize placement, reset game, start game
@@ -55,6 +55,8 @@ randomButton.addEventListener('click', () => {
 
 const startButton = document.querySelector('#startButton');
 startButton.addEventListener('click', () => {
+    const turnInfo = document.querySelector('#turnInfo');
+    turnInfo.classList.remove('hidden');
     opponentBoardDiv.addEventListener('click', playRound);
     removeDragEventListeners();
     gameControls.classList.add('hidden');

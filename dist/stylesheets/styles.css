@@ -92,3 +92,7 @@ footer {
 .fa-heart {
     color: #e25555;
 }
+
+#opponent.wait {
+    opacity: 0.4;
+}

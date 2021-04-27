@@ -1,30 +1,29 @@
 import Player from './Factories/Player';
-import {selfBoard, opponentBoard, selfBoardDiv} from '../index';
+import {selfBoard, opponentBoard, selfBoardDiv, opponentBoardDiv} from '../index';
 import ComputerAttack from './ComputerAttack';
 
 const human = Player();
 const computer = Player();
 const computerAttack = ComputerAttack();
 
-function playRound(e) {
-    if(selfBoard.allShipsSunk() || opponentBoard.allShipsSunk()) {
-        const winner = opponentBoard.allShipsSunk() ? 'human' : 'computer';
-        console.log(`winner is ${winner}`);
-        return;
-    }
-    // human's attack on computer
-    let cell = e.target;
-    let position = cell.getAttribute('data-key');
+const turnInfo = document.querySelector('#turnInfo');
+const turnText = turnInfo.querySelector('.turn');
 
-    // Don't play round if user attacks already attacked position
-    if([...cell.classList].includes('hit') || [...cell.classList].includes('miss')) return;
+let turn = 'player';
+turnText.textContent = turn;
 
-    attack(human, opponentBoard, cell, position);
+function getTurn() {
+    turn = turn === 'player' ? 'computer' : 'player';
+    return turn;
+}
 
+function computerTurn() {
     // computer's attack on human
-    position = computerAttack.getComputerAttackPosition();
+    turnText.textContent = getTurn();
+
+    let position = computerAttack.getComputerAttackPosition();
     console.log(position);
-    cell = selfBoardDiv.querySelector(`div[data-key="${position}"]`);
+    let cell = selfBoardDiv.querySelector(`div[data-key="${position}"]`);
 
     const computerResult = attack(computer, selfBoard, cell, position);
     console.log(computerResult);
@@ -35,6 +34,29 @@ function playRound(e) {
     } else {
         computerAttack.updateMiss(position);
     }
+    opponentBoardDiv.classList.remove('wait');
+}
+
+function playRound(e) {
+    if(selfBoard.allShipsSunk() || opponentBoard.allShipsSunk()) {
+        const winner = opponentBoard.allShipsSunk() ? 'human' : 'computer';
+        console.log(`winner is ${winner}`);
+        return;
+    }
+    if(turn === 'computer') return;
+
+    turnText.textContent = getTurn();
+
+    // human's attack on computer
+    let cell = e.target;
+    let position = cell.getAttribute('data-key');
+
+    // Don't play round if user attacks already attacked position
+    if([...cell.classList].includes('hit') || [...cell.classList].includes('miss')) return;
+
+    attack(human, opponentBoard, cell, position);
+    opponentBoardDiv.classList.add('wait');
+    setTimeout(computerTurn,2000);
 }
 
 function attack(player, board, cell, position){
