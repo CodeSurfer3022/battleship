@@ -1,18 +1,25 @@
 import {selfBoard, selfBoardDiv} from '../../index';
 import {areValidPositions, getPositionsFromShipDiv, moveShipDiv} from './ShipDivMovementHandler';
 
-function addDragEventListeners() {
-    const ships = selfBoardDiv.querySelectorAll('.ship');
-    const cells = selfBoardDiv.querySelectorAll('.cell');
-    // draggable event listeners
-    ships.forEach(ship => ship.addEventListener('dragstart', dragStart));
-    ships.forEach(ship => ship.addEventListener('dragend', dragEnd));
+// draggable event listeners
+function shipDivListeners() {
+    const shipDivs = selfBoardDiv.querySelectorAll('.ship');
+    shipDivs.forEach(ship => ship.addEventListener('dragstart', dragStart));
+    shipDivs.forEach(ship => ship.addEventListener('dragend', dragEnd));
+}
 
-    // cell event listeners
+// cell event listeners
+function cellListeners() {
+    const cells = selfBoardDiv.querySelectorAll('.cell');
     cells.forEach(cell => cell.addEventListener('dragover', dragOver));
     cells.forEach(cell => cell.addEventListener('dragenter', dragEnter));
     cells.forEach(cell => cell.addEventListener('dragleave', dragLeave));
     cells.forEach(cell => cell.addEventListener('drop', dragDrop));
+}
+
+function addDragEventListeners() {
+    shipDivListeners();
+    cellListeners();
 }
 
 function removeDragEventListeners() {
@@ -61,7 +68,6 @@ function dragLeave() {
 function dragDrop(e) {
     console.log('drop');
     e.preventDefault();
-    console.log(e);
     const data = e.dataTransfer.getData("text");
     console.log(data);
     this.className = 'cell';
@@ -97,4 +103,4 @@ function handleDrop(ship, cell) {
     selfBoard.updateShip(shipIndex, oldPositions, newPositions);
 }
 
-export {addDragEventListeners, removeDragEventListeners};
+export {addDragEventListeners, removeDragEventListeners, shipDivListeners};

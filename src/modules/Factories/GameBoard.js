@@ -2,7 +2,7 @@ const Ship = require('./Ship');
 
 function GameBoard() {
     const boardArray = [];
-    const ships = [];
+    let ships = [];
 
     // Initialize an empty board of size 10 * 10
     for(let i = 0; i < 100; i ++) {
@@ -21,7 +21,8 @@ function GameBoard() {
 
     const removeAllShips = () => {
         for(let i = 0; i < 100; i ++) {
-            boardArray.push(undefined);
+            boardArray[i] = undefined;
+            ships.length = 0;
         }
     }
 
