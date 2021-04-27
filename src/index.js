@@ -28,7 +28,6 @@ console.log(opponentBoard);
 renderBoard(selfBoard.boardArray, selfBoardDiv);
 renderBoard(opponentBoard.boardArray, opponentBoardDiv);
 
-opponentBoardDiv.addEventListener('click', playRound);
 addDragEventListeners();
 export {opponentBoard, selfBoard, selfBoardDiv}
 
@@ -45,4 +44,7 @@ randomButton.addEventListener('click', () => {
 });
 
 const startButton = document.querySelector('#startButton');
-startButton.addEventListener('click', removeDragEventListeners);
+startButton.addEventListener('click', () => {
+    opponentBoardDiv.addEventListener('click', playRound);
+    removeDragEventListeners();
+});
