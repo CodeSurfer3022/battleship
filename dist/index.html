@@ -10,13 +10,20 @@
     <body>
         <header>
             <h1>Battleship</h1>
-            <p>Note: Moving the ships will take the cell as the ending position</p>
             <div class="board-info" id="gameControls">
                 <button id="randomButton">Random placement</button>
                 <button id="startButton">Start</button>
+                <i class="fas fa-info-circle"></i>
+                <p class="hidden">You can move your ships around, note that the higlighted cell
+                will be the ending position i.e bottom/right end of a ship</p>
             </div>
             <div id="turnInfo" class="hidden">
-                <p class="turn"></p>
+                <h2>Turn</h2>
+                <h3 class="turn"></h3>
+            </div>
+            <div id="winner info" class="hidden">
+                <h2 class="winner"></h2>
+                <button>New game</button>
             </div>
         </header>
         <main>
@@ -26,15 +33,12 @@
                 </div>
                 <div class="container">
                     <div id="opponent" class="board"></div>
-                    <div class="board-info">
-                        <p>Computer</p>
-                    </div>
                 </div>
             </div>
         </main>
         <footer>
             <p>Made by Chandra.</p>
-            <p>Hosted with <i className="fas fa-heart"></i> by github.</p>
+            <p>Hosted with <i class="fas fa-heart"></i> by github.</p>
         </footer>
 
         <script src="main.js"></script>

@@ -40,8 +40,8 @@ function computerTurn() {
 
 function playRound(e) {
     if(selfBoard.allShipsSunk() || opponentBoard.allShipsSunk()) {
-        const winner = opponentBoard.allShipsSunk() ? 'human' : 'computer';
-        console.log(`winner is ${winner}`);
+        const winner = opponentBoard.allShipsSunk() ? 'player' : 'computer';
+        turnText.textContent = `winner is ${winner}`;
         return;
     }
     if(turn === 'computer') return;

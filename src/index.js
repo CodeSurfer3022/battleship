@@ -62,3 +62,9 @@ startButton.addEventListener('click', () => {
     removeDragEventListeners();
     gameControls.classList.add('hidden');
 });
+
+const infoButton = document.querySelector('.fa-info-circle');
+const p = infoButton.nextElementSibling;
+console.log(p);
+
+infoButton.addEventListener('click', () => p.classList.toggle('hidden'))

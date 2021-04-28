@@ -19,6 +19,10 @@ main {
     align-items: center;
 }
 
+#turnInfo {
+    text-align: center;
+}
+
 .containers {
     height: 100%;
     display: grid;
@@ -33,6 +37,7 @@ main {
     width: 100%;
     display: grid;
     grid-template-rows: 7fr 1fr;
+    margin:0 10px;
 }
 
 .board {
@@ -87,6 +92,7 @@ main {
 
 footer {
     background-color: deepskyblue;
+    text-align: center;
 }
 
 .fa-heart {
@@ -95,4 +101,12 @@ footer {
 
 .wait {
     opacity: 0.4;
+}
+
+.fa-info-circle {
+    cursor: pointer;
+}
+
+button {
+    cursor: pointer;
 }
