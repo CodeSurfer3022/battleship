@@ -1,10 +1,14 @@
 import React from "react";
 import './Main.css';
 
+import GameRibbon from "./GameRibbon";
+import PlayArea from "./PlayArea";
+
 function Main() {
   return(
     <main>
-      <p>This is main content</p>
+      <GameRibbon />
+      <PlayArea />
     </main>
   )
 }
