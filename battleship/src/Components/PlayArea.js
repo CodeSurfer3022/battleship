@@ -1,9 +1,13 @@
 import React from "react";
+import GameBoardContainer from "./GameBoardContainer";
+
+import "./PlayArea.css";
 
 function PlayArea() {
   return(
-    <div>
-
+    <div className="play-area">
+      <GameBoardContainer />
+      <GameBoardContainer />
     </div>
   )
 }
