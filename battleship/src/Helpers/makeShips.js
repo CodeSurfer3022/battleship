@@ -58,24 +58,22 @@ function makeShips() {
   const ships = [];
   // let's make 5 ships of sizes 1 to 5
   for(let size = 1; size <= 5; size ++) {
-    let ship = {orientation:'', positions:[]};
+    let ship = {id:size -1, orientation:size % 2 ? 'vertical' : 'horizontal',
+      positions:[], positionsHealth:{}, hit(){console.log('ship is hit' + this.id)}};
 
-    let orientation = size % 2 ? 'vertical' : 'horizontal';
-    ship.orientation = orientation;
-
-    let position = getValidPosition(unavailablePositions, size, orientation);
+    let position = getValidPosition(unavailablePositions, size, ship.orientation);
     for(let i = 0; i < size; i ++) {
       ship.positions.push(position);
       unavailablePositions.push(position);
-      if(orientation === 'vertical') {
+      if(ship.orientation === 'vertical') {
         position += 10;
       } else {
         position ++;
       }
     }
+    ship.positions.forEach(position => ship.positionsHealth[position] = 1);
     ships.push(ship);
   }
-  console.log(ships);
   return ships;
 }
 

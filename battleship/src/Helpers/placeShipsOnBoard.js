@@ -4,10 +4,8 @@ function placeShipsOnBoard(ships) {
     positions.push(undefined);
   }
 
-  console.log(ships);
   ships.forEach((ship, index) => {
     ship.positions.forEach(position => {
-      console.log(position, index);
       positions[position] = index;
     });
   });
