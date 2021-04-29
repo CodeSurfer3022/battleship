@@ -4,10 +4,10 @@ import "./GameBoardContainer.css";
 import GameBoard from "./GameBoard";
 import ShipsStatus from "./ShipsStatus";
 
-function GameBoardContainer() {
+function GameBoardContainer(props) {
   return(
     <div className="gameboard-container">
-      <GameBoard />
+      <GameBoard player={props.player}/>
       <ShipsStatus />
     </div>
   )

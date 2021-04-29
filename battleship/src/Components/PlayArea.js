@@ -6,8 +6,8 @@ import "./PlayArea.css";
 function PlayArea() {
   return(
     <div className="play-area">
-      <GameBoardContainer />
-      <GameBoardContainer />
+      <GameBoardContainer player="Player"/>
+      <GameBoardContainer player="Computer"/>
     </div>
   )
 }
