@@ -5,7 +5,7 @@ function placeShipsOnBoard(ships) {
   }
 
   ships.forEach((ship, index) => {
-    ship.positions.forEach(position => {
+    ship.getPositions().forEach(position => {
       positions[position] = index;
     });
   });

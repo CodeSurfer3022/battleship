@@ -1,3 +1,5 @@
+import Ship from '../Factories/Ship';
+
 function checkValidHorizontalPosition(unavailablePositions, position, size) {
   const row = Math.floor(position / 10);
   const end = (row + 1) * 10;
@@ -58,20 +60,21 @@ function makeShips() {
   const ships = [];
   // let's make 5 ships of sizes 1 to 5
   for(let size = 1; size <= 5; size ++) {
-    let ship = {id:size -1, orientation:size % 2 ? 'vertical' : 'horizontal',
-      positions:[], positionsHealth:{}, hit(){console.log('ship is hit' + this.id)}};
+    let orientation = size % 2 ? 'vertical' : 'horizontal';
+    let positions = [];
 
-    let position = getValidPosition(unavailablePositions, size, ship.orientation);
+    let position = getValidPosition(unavailablePositions, size, orientation);
     for(let i = 0; i < size; i ++) {
-      ship.positions.push(position);
+      positions.push(position);
       unavailablePositions.push(position);
-      if(ship.orientation === 'vertical') {
+      if(orientation === 'vertical') {
         position += 10;
       } else {
         position ++;
       }
     }
-    ship.positions.forEach(position => ship.positionsHealth[position] = 1);
+
+    let ship = Ship(positions, orientation);
     ships.push(ship);
   }
   return ships;

@@ -4,20 +4,20 @@ import Cell from "./Cell";
 import makeShips from "../Helpers/makeShips";
 import placeShipsOnBoard from "../Helpers/placeShipsOnBoard";
 
+// make initial ships and place them on board
+let initialShips = makeShips();
+let initialBoardCellValues = placeShipsOnBoard(initialShips);
+
 function GameBoard(props) {
   console.log(props.player)
-  const [ships, setShips] = useState(makeShips());
-  const [boardCellValues, setBoardCellValues] = useState([]);
 
-  // component did mount, on first mount, place the ships on the board
-  useEffect(() => {
-    setBoardCellValues(placeShipsOnBoard(ships));
-  }, []);
+  const [ships, setShips] = useState(initialShips);
+  const [boardCellValues, setBoardCellValues] = useState(initialBoardCellValues);
 
   console.log(ships, boardCellValues);
 
   function receiveAttack(position) {
-    console.log(position);
+    console.log(position, boardCellValues[position]);
     let newValues = boardCellValues.slice();
 
     let value = newValues[position];
@@ -30,6 +30,7 @@ function GameBoard(props) {
       hitShip.hit(position);
       newValues[position] = 'hit';
     }
+    console.log(newValues);
     setBoardCellValues(newValues);
   }
 
