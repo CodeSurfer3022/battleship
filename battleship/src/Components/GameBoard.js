@@ -3,7 +3,8 @@ import "./GameBoard.css";
 import Cell from "./Cell";
 
 function GameBoard() {
-  const [values, setValues] = useState([])
+  const [values, setValues] = useState([]);
+  const [positions, setPositions] = useState([]);
 
   // component did mount
   useEffect(() => {
