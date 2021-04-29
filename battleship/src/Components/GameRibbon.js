@@ -11,6 +11,14 @@ function GameRibbon() {
       <FontAwesomeIcon icon={faInfoCircle}/>
       <p className="info__text hidden">You can move your ships around, note that the higlighted cell
         will be the ending position i.e bottom/right end of a ship</p>
+      <div>
+        <h2>Turn</h2>
+        <p>Player</p>
+      </div>
+      <div>
+        <p>Player won</p>
+        <button>New game</button>
+      </div>
     </div>
   )
 }
