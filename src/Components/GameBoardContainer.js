@@ -8,10 +8,7 @@ function GameBoardContainer(props) {
   return(
     <div className="gameboard-container">
       <GameBoard
-        player={props.player}
-        boardCellValues={props.boardCellValues}
-        ships={props.ships}
-        playRound={props.playRound}
+        board={props.board}
       />
       <ShipsStatus />
     </div>

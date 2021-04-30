@@ -1,4 +1,4 @@
-.board {
+.game-board {
     position: relative;
     border: 1px solid black;
     display: grid;
