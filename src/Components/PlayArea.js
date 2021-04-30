@@ -32,15 +32,13 @@ function PlayArea(props) {
   }
 
   function playRound(event) {
-    let cell = event.target;
-
     // player's attack on computer
-    let position = cell.getAttribute('data-key');
+    let position = event.target.getAttribute('data-key');
     attack(player, computer, position);
 
     // computer's attack on player
     position = getComputerAttackPosition(player.board);
-    attack(computer, player, position);
+    setTimeout(() => attack(computer, player, position), 1000);
   }
 
   return(
