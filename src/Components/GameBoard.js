@@ -22,8 +22,3 @@ function GameBoard(props) {
 }
 
 export default GameBoard;
-
-
-// make ships for players
-let playerShips = makeShips();
-let computerShips = makeShips();
