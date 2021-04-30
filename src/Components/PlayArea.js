@@ -9,7 +9,7 @@ import getComputerAttackPosition from "../Helpers/getComputerAttackPosition";
 let initialPlayerShips = makeShips();
 let initialPlayerBoardCellValues = placeShipsOnBoard(initialPlayerShips);
 
-// make initial ships and place them on board
+// make initial computer ships and place them on board
 let initialComputerShips = makeShips();
 let initialComputerBoardCellValues = placeShipsOnBoard(initialComputerShips);
 
@@ -23,6 +23,10 @@ function PlayArea() {
   const [computerBoardCellValues, setComputerBoardCellValues] = useState(initialComputerBoardCellValues);
 
   console.log(computerShips, computerBoardCellValues);
+
+  function areAllPlayerShipsSunk() {
+    return playerShips.every(ship => ship.isSunk());
+  }
 
   function areAllComputerShipsSunk() {
     return computerShips.every(ship => ship.isSunk());
@@ -50,6 +54,28 @@ function PlayArea() {
     console.log(areAllComputerShipsSunk());
   }
 
+  function computerAttack(position) {
+    console.log(position, playerBoardCellValues[position]);
+    let newValues = playerBoardCellValues.slice();
+    let newShips = playerShips.slice();
+
+    let value = newValues[position];
+    if(value === undefined) {
+      newValues[position] = 'miss';
+
+    } else if (newValues[position] !== 'miss' && newValues[position] !== 'hit'){
+      const index = newValues[position];
+      const hitShip = newShips[index];
+      console.log(hitShip);
+      hitShip.hit(position);
+      newValues[position] = 'hit';
+    }
+    console.log(newValues);
+    setPlayerBoardCellValues(newValues);
+    setPlayerShips(newShips);
+    console.log(areAllPlayerShipsSunk());
+  }
+
   function playRound(event) {
     let cell = event.target;
     let position = cell.getAttribute('data-key');
@@ -59,7 +85,7 @@ function PlayArea() {
     // then computer's turn
     position = getComputerAttackPosition(computerBoardCellValues);
     console.log(position);
-    // attack(position);
+    computerAttack(position);
   }
 
   return(
