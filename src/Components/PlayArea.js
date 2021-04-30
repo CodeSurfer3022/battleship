@@ -12,22 +12,51 @@ function PlayArea(props) {
   const {player, computer} = props;
   const [boardValues, setBoardValues] = useState(
     {
-      player: initialValues,
-      computer: initialValues
+      [player.name]: initialValues,
+      [computer.name]: initialValues
     })
+
+  function attack(player, opponent, position) {
+    console.log(player, opponent, opponent.board[position]);
+
+    player.attack(opponent, position)
+
+    console.log(player.board.boardValues);
+    setBoardValues(boardValues => {
+      const newBoardValues = {};
+      newBoardValues[player.name] = boardValues[player.name];
+      newBoardValues[opponent.name] = opponent.board.boardValues.slice();
+
+      return newBoardValues;
+    });
+  }
+
+  function playRound(event) {
+    let cell = event.target;
+
+    // player's attack on computer
+    let position = cell.getAttribute('data-key');
+    attack(player, computer, position);
+
+    // computer's attack on player
+    position = getComputerAttackPosition(player.board);
+    attack(computer, player, position);
+  }
 
   return(
     <div className="play-area">
       <GameBoardContainer
         player={player.name}
-        board={boardValues.player}
+        boardValues={boardValues[player.name]}
         ships={player.ships}
+        playRound={null}
       />
 
       <GameBoardContainer
         player={computer.name}
-        board={boardValues.computer}
+        boardValues={boardValues[computer.name]}
         ships={computer.ships}
+        playRound={playRound}
       />
     </div>
   )
