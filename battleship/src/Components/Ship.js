@@ -16,6 +16,7 @@ function Ship(props){
          data-start={start}
          data-end={end}
          style={style}
+         draggable="true"
     >
 
     </div>

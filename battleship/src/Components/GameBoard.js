@@ -49,9 +49,12 @@ function GameBoard(props) {
           receiveAttack={() => receiveAttack(index)}
     />);
 
-  const shipDivs = ships.map((ship, index) => <Ship key={index}
-                                                    index={index}
-                                                    ship={ship}/>);
+  // place ship divs on board only for player
+  const shipDivs = props.player === 'Player' ?
+    ships.map((ship, index) => <Ship
+      key={index}
+      index={index}
+      ship={ship}/>) : null;
 
   return(
     <div className={`game-board ${props.player}`}>
