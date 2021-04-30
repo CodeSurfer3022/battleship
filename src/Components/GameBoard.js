@@ -14,9 +14,15 @@ function GameBoard(props) {
           index={index}
     />);
 
+  const shipDivs = player === 'Player' ? ships.map((ship, index) =>
+    <Ship key={index}
+          ship={ship}
+    />) : null;
+
   return(
     <div className={`game-board ${player}`}>
       {cells}
+      {shipDivs}
     </div>
   )
 }

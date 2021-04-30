@@ -31,10 +31,12 @@ function PlayArea() {
     <div className="play-area">
       <GameBoardContainer
         board={playerBoardValues}
+        ships={playerShips}
       />
 
       <GameBoardContainer
         board={computerBoardValues}
+        ships={computerShips}
       />
     </div>
   )

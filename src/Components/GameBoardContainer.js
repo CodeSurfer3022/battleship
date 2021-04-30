@@ -9,6 +9,7 @@ function GameBoardContainer(props) {
     <div className="gameboard-container">
       <GameBoard
         board={props.board}
+        ships={props.ships}
       />
       <ShipsStatus />
     </div>
