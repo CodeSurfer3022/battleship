@@ -1,6 +1,6 @@
 function Player(name) {
-    const attack = (board, position) => {
-        board.receiveAttack(position);
+    const attack = (opponent, position) => {
+        opponent.board.receiveAttack(position);
     }
     return {name, attack}
 }
