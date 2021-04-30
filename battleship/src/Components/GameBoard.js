@@ -2,11 +2,8 @@ import React from "react";
 import "./GameBoard.css";
 import Cell from "./Cell";
 import Ship from "./Ship";
-import getComputerAttackPosition from "../Helpers/getComputerAttackPosition";
 
 function GameBoard(props) {
-  console.log(props.player)
-
   const cells = props.boardCellValues.map((value, index = 0) =>
     <Cell key={index}
           value={value}
