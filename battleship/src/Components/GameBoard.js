@@ -4,6 +4,7 @@ import Cell from "./Cell";
 import makeShips from "../Helpers/makeShips";
 import placeShipsOnBoard from "../Helpers/placeShipsOnBoard";
 import Ship from "./Ship";
+import getComputerAttackPosition from "../Helpers/getComputerAttackPosition";
 
 // make initial ships and place them on board
 let initialShips = makeShips();
@@ -17,7 +18,7 @@ function GameBoard(props) {
 
   console.log(ships, boardCellValues);
 
-  function receiveAttack(position) {
+  function attack(position) {
     console.log(position, boardCellValues[position]);
     let newValues = boardCellValues.slice();
     let newShips = ships.slice();
@@ -25,6 +26,7 @@ function GameBoard(props) {
     let value = newValues[position];
     if(value === undefined) {
       newValues[position] = 'miss';
+
     } else if (newValues[position] !== 'miss' && newValues[position] !== 'hit'){
       const index = newValues[position];
       const hitShip = newShips[index];
@@ -38,6 +40,17 @@ function GameBoard(props) {
     console.log(areAllShipsSunk());
   }
 
+  function playRound(event) {
+    let cell = event.target;
+    let position = cell.getAttribute('data-key');
+    // this is player's turn
+    attack(position);
+
+    // then computer's turn
+    // position = getComputerAttackPosition(boardCellValues);
+    // attack(position);
+  }
+
   function areAllShipsSunk() {
     return ships.every(ship => ship.isSunk());
   }
@@ -46,7 +59,6 @@ function GameBoard(props) {
     <Cell key={index}
           value={value}
           index={index}
-          receiveAttack={() => receiveAttack(index)}
     />);
 
   // place ship divs on board only for player
@@ -58,7 +70,7 @@ function GameBoard(props) {
 
   return(
     <div className={`game-board ${props.player}`}>
-      <div className="board">
+      <div className="board" onClick={playRound}>
         {cells}
         {shipDivs}
       </div>
