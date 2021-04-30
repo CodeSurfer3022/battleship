@@ -1,18 +1,18 @@
 const Ship = require('./Ship');
 
 function Board() {
-    const board = [];
+    const boardValues = [];
     let ships = [];
 
-    // Initialize an empty board of size 10 * 10
+    // Initialize an empty boardValues of size 10 * 10
     for(let i = 0; i < 100; i ++) {
-        board.push(undefined);
+        boardValues.push(undefined);
     }
 
     const placeShip = (index, positions) => {
-        if(positions.every(position => board[position] === undefined)) {
+        if(positions.every(position => boardValues[position] === undefined)) {
             const ship = Ship(positions);
-            positions.forEach(position => board[position] = index);
+            positions.forEach(position => boardValues[position] = index);
             ships.push(ship);
         } else {
             console.log("one or more positions are occupied")
@@ -24,23 +24,26 @@ function Board() {
     }
 
     const receiveAttack = (position) => {
-        if(board[position] === undefined) {
-            board[position] = 'miss';
-        } else if (board[position] !== 'miss' && board[position] !== 'hit'){
-            const index = board[position];
+        if(boardValues[position] === undefined) {
+            boardValues[position] = 'miss';
+        } else if (boardValues[position] !== 'miss' && boardValues[position] !== 'hit'){
+            const index = boardValues[position];
             const hitShip = ships[index];
             hitShip.hit(position);
-            board[position] = 'hit';
+            boardValues[position] = 'hit';
         }
     }
+
+    const isPositionHit = (position) => boardValues[position] === 'miss' || boardValues[position] === 'hit'
 
     const areAllShipsSunk = () => {
         return ships.every(ship => ship.isSunk());
     }
 
     return {
-        board,
+        boardValues,
         ships,
+        isPositionHit,
         placeAllShips,
         receiveAttack,
         areAllShipsSunk
