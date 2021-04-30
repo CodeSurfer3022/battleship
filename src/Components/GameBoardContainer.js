@@ -8,6 +8,7 @@ function GameBoardContainer(props) {
   return(
     <div className="gameboard-container">
       <GameBoard
+        player={props.player}
         board={props.board}
         ships={props.ships}
       />

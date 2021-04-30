@@ -11,6 +11,10 @@ import makeShips from "../Helpers/makeShips";
 let initialValues = [];
 for(let i = 0; i < 100; i ++) initialValues.push(undefined);
 
+// create Players to access attack functionality
+let player = Player('Player');
+let computer = Player('Computer');
+
 // make boards for players
 let playerBoard = Board();
 let computerBoard = Board();
@@ -30,11 +34,13 @@ function PlayArea() {
   return(
     <div className="play-area">
       <GameBoardContainer
+        player={player.name}
         board={playerBoardValues}
         ships={playerShips}
       />
 
       <GameBoardContainer
+        player={computer.name}
         board={computerBoardValues}
         ships={computerShips}
       />
