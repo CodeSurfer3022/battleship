@@ -3,6 +3,7 @@ import "./GameBoard.css";
 import Cell from "./Cell";
 import makeShips from "../Helpers/makeShips";
 import placeShipsOnBoard from "../Helpers/placeShipsOnBoard";
+import Ship from "./Ship";
 
 // make initial ships and place them on board
 let initialShips = makeShips();
@@ -41,7 +42,6 @@ function GameBoard(props) {
     return ships.every(ship => ship.isSunk());
   }
 
-
   const cells = boardCellValues.map((value, index = 0) =>
     <Cell key={index}
           value={value}
@@ -49,10 +49,15 @@ function GameBoard(props) {
           receiveAttack={() => receiveAttack(index)}
     />);
 
+  const shipDivs = ships.map((ship, index) => <Ship key={index}
+                                                    index={index}
+                                                    ship={ship}/>);
+
   return(
     <div className={`game-board ${props.player}`}>
       <div className="board">
         {cells}
+        {shipDivs}
       </div>
       <p>{props.player} Board</p>
     </div>
