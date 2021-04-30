@@ -40,12 +40,10 @@
 //     return validatePosition(direction, hit, position);
 // }
 //
-function getRandomPosition(boardCellValues) {
+function getRandomPosition(board) {
     let position = Math.floor(Math.random() * 100);
-    let cellValue = boardCellValues[position];
-    while(cellValue === 'miss' || cellValue === 'hit') {
+    while(board.isPositionHit(position)) {
         position = Math.floor(Math.random() * 100);
-        cellValue = boardCellValues[position];
     }
     return position;
 }
@@ -68,7 +66,7 @@ function getRandomPosition(boardCellValues) {
 //     }
 // }
 //
-const getComputerAttackPosition = (boardCellValues) => {
+const getComputerAttackPosition = (board) => {
     // if (hit) {
     //     console.log('inside ' + hit + directions);
     //
@@ -85,7 +83,7 @@ const getComputerAttackPosition = (boardCellValues) => {
     //     }
     //     return position;
     // }
-    return getRandomPosition(boardCellValues);
+    return getRandomPosition(board);
 }
 
 export default getComputerAttackPosition;
