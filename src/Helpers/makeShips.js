@@ -1,5 +1,9 @@
 import Ship from '../Factories/Ship';
 
+// Global variables
+let orientations = ['vertical', 'horizontal'];
+let position, index;
+
 function checkValidHorizontalPosition(unavailablePositions, position, size) {
   const row = Math.floor(position / 10);
   const end = (row + 1) * 10;
@@ -47,7 +51,7 @@ function isvalidPosition(unavailablePositions ,position, size, orientation) {
 }
 
 function getValidPosition(unavailablePositions, size, orientation) {
-  let position = Math.floor(Math.random() * 100);
+  position = Math.floor(Math.random() * 100);
   while(!isvalidPosition(unavailablePositions, position, size, orientation))
   {
     position = Math.floor(Math.random() * 100);
@@ -55,12 +59,18 @@ function getValidPosition(unavailablePositions, size, orientation) {
   return position;
 }
 
+function getRandomOrientation() {
+  index = Math.floor(Math.random() * 2);
+  console.log(index);
+  return orientations[index];
+}
+
 function makeShips() {
   const unavailablePositions = [];
   const ships = [];
   // let's make 5 ships of sizes 1 to 5
   for(let size = 1; size <= 5; size ++) {
-    let orientation = size % 2 ? 'vertical' : 'horizontal';
+    let orientation = getRandomOrientation();
     let positions = [];
 
     let position = getValidPosition(unavailablePositions, size, orientation);
@@ -74,6 +84,7 @@ function makeShips() {
       }
     }
 
+    console.log(orientation, positions);
     let ship = Ship(positions, orientation);
     ships.push(ship);
   }

@@ -38,7 +38,7 @@ for(let i = 0; i < 100; i ++) initialValues.push(undefined);
 // The initial turn is of player
 let turn = player;
 let winner;
-console.log(computer.ships);
+console.log(computer.ships.forEach(ship => console.log(ship.positions)));
 
 function Main() {
   const [boardValues, setBoardValues] = useState(
