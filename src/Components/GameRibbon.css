@@ -1,3 +1,13 @@
 .game-ribbon {
+    height: 80px;
     background: #e25555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.banner {
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
 }

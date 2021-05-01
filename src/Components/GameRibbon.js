@@ -4,12 +4,10 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faInfoCircle} from "@fortawesome/free-solid-svg-icons";
 
 function GameRibbon(props) {
-  const banner = props.winner ? <div>
-    <p>{props.winner} won</p>
-    <button>New game</button>
-  </div> :  <div>
-    <h2>Turn</h2>
-    <p>{props.turn.name}</p>
+  const banner = props.winner ? <div className="banner">
+    <h2>{props.winner} won</h2>
+  </div> :  <div className="banner">
+    <h2>{props.turn.name}'s Turn</h2>
   </div>;
 
   return(

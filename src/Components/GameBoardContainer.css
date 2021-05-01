@@ -1,30 +1,37 @@
 .gameboard-container {
-    /*display: flex;*/
+    margin: 20px;
 }
 
 .flex {
     display: flex;
 }
 
+
+/* Style numbers, side and bottom tab */
+
 .number {
-    height: 40px;
-    width: 40px;
     display: flex;
-    border: 1px solid black;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-tab .number {
+    height: 40px;
+    width: 30px;
+    align-items: center;
+    justify-content: center;
 }
 
 .bottom-tab {
     display: flex;
-    height: 40px;
-    border: 1px solid black;
-}
-
-.side-tab .number {
-    align-items: center;
-    justify-content: flex-end;
+    height: 30px;
 }
 
 .bottom-tab .number {
-    align-items: flex-start;
-    justify-content: center;
+    width: 40px;
+}
+
+/* style board's name */
+.board-name {
+    margin-top: 10px;
 }

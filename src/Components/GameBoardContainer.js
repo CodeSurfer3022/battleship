@@ -31,8 +31,8 @@ function GameBoardContainer(props) {
           </div>
         </div>
       </div>
-      <div>
-        <p>{player} board</p>
+      <div className="board-name">
+        <h2>{player} Board</h2>
       </div>
 
       {/*<ShipsStatus />*/}
