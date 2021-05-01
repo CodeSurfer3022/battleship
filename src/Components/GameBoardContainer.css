@@ -1,3 +1,7 @@
 .gameboard-container {
     display: flex;
 }
+
+.pause {
+    opacity: 0.4;
+}
