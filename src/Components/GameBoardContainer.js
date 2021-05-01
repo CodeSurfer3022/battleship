@@ -4,14 +4,21 @@ import GameBoard from "./GameBoard";
 import ShipsStatus from "./ShipsStatus";
 
 function GameBoardContainer(props) {
+  const {player, boardValues, ships, playRound, turn} = props;
+
+  const pause = turn !== player ? '' : 'pause';
+  console.log('turn is ' + turn);
+  console.log('player is ' + player);
+  console.log('pause is ' + pause);
 
   return(
-    <div className="gameboard-container">
+    <div className={`gameboard-container ${pause}`}>
       <GameBoard
-        player={props.player}
-        boardValues={props.boardValues}
-        ships={props.ships}
-        playRound={props.playRound}
+        turn={turn}
+        player={player}
+        boardValues={boardValues}
+        ships={ships}
+        playRound={playRound}
       />
       {/*<ShipsStatus />*/}
     </div>
