@@ -13,7 +13,7 @@ function GameBoardContainer(props) {
         ships={props.ships}
         playRound={props.playRound}
       />
-      <ShipsStatus />
+      {/*<ShipsStatus />*/}
     </div>
   )
 }
