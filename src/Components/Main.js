@@ -37,6 +37,8 @@ for(let i = 0; i < 100; i ++) initialValues.push(undefined);
 
 // The initial turn is of player
 let turn = player;
+let winner;
+console.log(computer.ships);
 
 function Main() {
   const [boardValues, setBoardValues] = useState(
@@ -46,9 +48,14 @@ function Main() {
     })
 
   function attack(player, opponent, position) {
-    console.log('in attack player is ' + player.name)
     if(turn === opponent) return;
-    player.attack(opponent, position)
+    player.attack(opponent, position);
+
+    // If this attack sinks all ships, player won!
+    if(opponent.board.areAllShipsSunk()) {
+      winner = player.name;
+    }
+
     turn = opponent;
 
     setBoardValues(boardValues => {
@@ -58,10 +65,12 @@ function Main() {
 
       return newBoardValues;
     });
-    console.log('at end of attack opponent is ' + opponent.name);
   }
 
   function playRound(event) {
+    // Don't play anymore if anyone wins
+    if(winner) return;
+
     // player's attack on computer
     let position = event.target.getAttribute('data-key');
     // Don't allow player to attack same cell twice
@@ -75,7 +84,7 @@ function Main() {
 
   return(
     <main>
-      <GameRibbon />
+      <GameRibbon turn={turn} winner={winner}/>
       <PlayArea
         player={player}
         computer={computer}

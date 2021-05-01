@@ -7,9 +7,6 @@ function GameBoardContainer(props) {
   const {player, boardValues, ships, playRound, turn} = props;
 
   const pause = turn !== player ? '' : 'pause';
-  console.log('turn is ' + turn);
-  console.log('player is ' + player);
-  console.log('pause is ' + pause);
 
   return(
     <div className={`gameboard-container ${pause}`}>
