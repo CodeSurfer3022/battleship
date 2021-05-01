@@ -6,7 +6,9 @@ import Ship from "./Ship";
 import makeShips from "../Helpers/makeShips";
 
 function GameBoard(props) {
-  const {player, boardValues, ships, playRound} = props;
+  const {player, boardValues, ships, playRound, turn} = props;
+
+  const pause = turn !== player ? '' : 'pause';
 
   const cells = boardValues.map((value, index = 0) =>
     <Cell key={index}
@@ -20,7 +22,7 @@ function GameBoard(props) {
     />) : null;
 
   return(
-    <div className={`game-board ${player}`} onClick={playRound}>
+    <div className={`game-board ${player} ${pause}`} onClick={playRound}>
       {cells}
       {shipDivs}
     </div>

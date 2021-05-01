@@ -4,3 +4,7 @@
     display: grid;
     grid-template: repeat(10, 1fr) / repeat(10, 1fr);
 }
+
+.pause {
+    opacity: 0.4;
+}
