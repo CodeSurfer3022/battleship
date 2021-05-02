@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import "./PlayArea.css";
 
 import GameBoardContainer from "./GameBoardContainer";
-import getComputerAttackPosition from "../Helpers/getComputerAttackPosition";
+import computerAttack from "../Helpers/computerAttack";
 
 function PlayArea(props) {
   const {player, computer, boardValues, playRound, turn} = props;

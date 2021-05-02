@@ -34,7 +34,9 @@ function Board() {
         }
     }
 
-    const isPositionHit = (position) => boardValues[position] === 'miss' || boardValues[position] === 'hit'
+    const isPositionAttacked = (position) => isPositionHit(position) || isPositionMiss(position);
+    const isPositionHit = (position) => boardValues[position] === 'hit';
+    const isPositionMiss = (position) => boardValues[position] === 'miss';
 
     const areAllShipsSunk = () => {
         return ships.every(ship => ship.isSunk());
@@ -43,7 +45,9 @@ function Board() {
     return {
         boardValues,
         ships,
+        isPositionAttacked,
         isPositionHit,
+        isPositionMiss,
         placeAllShips,
         receiveAttack,
         areAllShipsSunk

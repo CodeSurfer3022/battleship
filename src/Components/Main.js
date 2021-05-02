@@ -6,7 +6,7 @@ import PlayArea from "./PlayArea";
 import Player from "../Factories/Player";
 import Board from "../Factories/Board";
 import makeShips from "../Helpers/makeShips";
-import getComputerAttackPosition from "../Helpers/getComputerAttackPosition";
+import computerAttack from "../Helpers/computerAttack";
 
 // create Players to access attack functionality
 let player = Player('Player');
@@ -37,6 +37,7 @@ for(let i = 0; i < 100; i ++) initialValues.push(undefined);
 
 // The initial turn is of player
 let turn = player;
+let attackResult, resultMsg;
 let winner;
 console.log(computer.ships.forEach(ship => console.log(ship.positions)));
 
@@ -50,6 +51,20 @@ function Main() {
   function attack(player, opponent, position) {
     if(turn === opponent) return;
     player.attack(opponent, position);
+
+    attackResult = opponent.board.isPositionHit((position));
+    resultMsg = attackResult ? 'hit' : 'miss';
+    // console.log(`${player.name} shot a fire, and ${opponent.board.isPositionHit((position))}`);
+
+    // For computer, we need to update hits and misses, so it can remember them
+    // and use it to attack more intelligently next time like humans do!
+    if(player === computer) {
+      if(attackResult) {
+        computerAttack.updateHits(position);
+      } else {
+        computerAttack.updateMiss();
+      }
+    }
 
     // If this attack sinks all ships, player won!
     if(opponent.board.areAllShipsSunk()) {
@@ -74,12 +89,14 @@ function Main() {
     // player's attack on computer
     let position = event.target.getAttribute('data-key');
     // Don't allow player to attack same cell twice
-    if (computer.board.isPositionHit(position)) return;
+    if (computer.board.isPositionAttacked(position)) return;
     attack(player, computer, position);
 
     // computer's attack on player
-    position = getComputerAttackPosition(player.board);
-    setTimeout(() => attack(computer, player, position), 1000);
+    position = computerAttack.getAttackPosition(player.board);
+    // console.log(position)
+    attack(computer, player, position);
+    // setTimeout(() => attack(computer, player, position), 1000);
   }
 
   return(

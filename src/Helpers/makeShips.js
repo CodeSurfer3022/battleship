@@ -61,7 +61,6 @@ function getValidPosition(unavailablePositions, size, orientation) {
 
 function getRandomOrientation() {
   index = Math.floor(Math.random() * 2);
-  console.log(index);
   return orientations[index];
 }
 
@@ -84,7 +83,6 @@ function makeShips() {
       }
     }
 
-    console.log(orientation, positions);
     let ship = Ship(positions, orientation);
     ships.push(ship);
   }
