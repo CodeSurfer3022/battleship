@@ -19,4 +19,4 @@ function Ship(positions, orientation) {
         positions, orientation, length, positionsHealth};
 }
 
-module.exports = Ship;
+export default Ship;
