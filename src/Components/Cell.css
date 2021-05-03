@@ -2,6 +2,9 @@
     height: 40px;
     width: 40px;
     border: 1px solid black;
+}
+
+.Computer .cell {
     cursor: pointer;
 }
 
@@ -12,3 +15,32 @@
 .miss {
     background-color: gray;
 }
+
+.Player .hit {
+    animation-name: hit;
+    animation-duration: 1000ms;
+}
+
+.Player .miss {
+    animation-name: miss;
+    animation-duration: 1000ms;
+}
+
+@keyframes hit {
+    0%{
+        background-color: black;
+    }
+    100% {
+        background-color: red;
+    }
+}
+
+@keyframes miss {
+    0%{
+        background-color: blue;
+    }
+    100% {
+        background-color: gray;
+    }
+}
+

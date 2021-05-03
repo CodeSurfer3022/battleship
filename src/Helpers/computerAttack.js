@@ -87,8 +87,6 @@ const computerAttack = (() => {
 
     const getAttackPosition = (board) => {
         if (hit) {
-            console.log('inside ' + hit + directions);
-
             // get a valid position i.e on board and on same column for
             // vertical ships, same row for horizontal ships
             let position = getPositionBasedOnHit(hit, directions[0], board);
