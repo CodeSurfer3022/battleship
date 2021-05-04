@@ -3,7 +3,6 @@ import "./GameBoard.css";
 
 import Cell from "./Cell";
 import Ship from "./Ship";
-import makeShips from "../Helpers/makeShips";
 
 function GameBoard(props) {
   const {player, boardValues, ships, playRound, turn} = props;

@@ -26,10 +26,10 @@ computerBoard.placeAllShips(computerShips);
 
 // Update players with their respective boards and ships
 player.board = playerBoard;
-player.ships = playerShips;
+player.ships = playerBoard.ships;
 
 computer.board = computerBoard;
-computer.ships = computerShips;
+computer.ships = computerBoard.ships;
 
 // The board initially has no ships, so initialize to undefined
 let initialValues = [];
@@ -39,6 +39,7 @@ for(let i = 0; i < 100; i ++) initialValues.push(undefined);
 let turn = player;
 let attackResult;
 let winner;
+
 console.log(computer.ships.forEach(ship => console.log(ship.positions)));
 
 function Main() {

@@ -29,6 +29,10 @@ function getPositionBasedOnHit(hit, direction, board) {
 
         case 'right':
             position = hit + 1;
+            break;
+
+        default:
+            console.log('wrong value used for direction');
     }
 
     console.log(position);

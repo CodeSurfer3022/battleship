@@ -1,8 +1,7 @@
-import React, {useState} from "react";
+import React from "react";
 import "./PlayArea.css";
 
 import GameBoardContainer from "./GameBoardContainer";
-import computerAttack from "../Helpers/computerAttack";
 
 function PlayArea(props) {
   const {player, computer, boardValues, playRound, turn} = props;

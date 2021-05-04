@@ -1,5 +1,3 @@
-const Ship = require('./Ship');
-
 function Board() {
     const boardValues = [];
     let ships = [];
@@ -11,16 +9,17 @@ function Board() {
 
     const placeShip = (index, positions) => {
         if(positions.every(position => boardValues[position] === undefined)) {
-            const ship = Ship(positions);
             positions.forEach(position => boardValues[position] = index);
-            ships.push(ship);
         } else {
             console.log("one or more positions are occupied")
         }
     }
 
-    const placeAllShips = (ships) => {
-        ships.forEach((ship, index) => placeShip(index, ship.positions));
+    const placeAllShips = (shipsArr) => {
+        shipsArr.forEach((ship, index) => {
+            ships.push(ship);
+            placeShip(index, ship.positions)
+        });
     }
 
     const receiveAttack = (position) => {
