@@ -5,29 +5,30 @@
 export default {
   dragStart(e) {
     console.log('start');
-    const shipNum = this.getAttribute('data-ship');
-    e.dataTransfer.setData("text", shipNum);
-    setTimeout(() => this.classList.add('hidden'), 0);
+    console.log(e, this);
+    // const shipNum = this.getAttribute('data-ship');
+    // e.dataTransfer.setData("text", shipNum);
+    // setTimeout(() => this.classList.add('hidden'), 0);
   },
 
   dragEnd() {
     console.log('end');
-    this.classList.remove('hidden');
+    // this.classList.remove('hidden');
   },
 
   dragOver(e) {
     console.log('over');
-    e.preventDefault();
+    // e.preventDefault();
   },
 
   dragEnter() {
     console.log('enter');
-    this.classList.add('hovered');
+    // this.classList.add('hovered');
   },
 
   dragLeave() {
     console.log('leave');
-    this.className = 'cell';
+    // this.className = 'cell';
   },
 
   dragDrop(e) {
@@ -35,9 +36,9 @@ export default {
     e.preventDefault();
     const data = e.dataTransfer.getData("text");
     console.log(data);
-    this.className = 'cell';
+    // this.className = 'cell';
     // const ship = selfBoardDiv.querySelector(`.ship[data-ship='${data}']`);
-    const cell = this;
+    // const cell = this;
     // console.log(ship, cell);
     // handleDrop(ship, cell);
   }

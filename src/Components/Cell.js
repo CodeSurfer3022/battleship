@@ -3,16 +3,31 @@ import "./Cell.css";
 
 function Cell(props) {
   let status='';
-  if(props.value === 'miss' || props.value === 'hit') {
-    status = props.value;
+  const {value, index, dragOver, dragEnter, dragLeave, dragDrop} = props;
+
+  if(value === 'miss' || value === 'hit') {
+    status = value;
   }
 
+  console.log(dragOver)
+
   return(
-    <div className={`cell ${status}`} data-key={props.index}>
+    <div className={`cell ${status}`}
+         data-key={index}
+         onDragOver={dragOver}
+         onDragEnter={dragEnter}
+         onDragLeave= {dragLeave}
+         onDrop= {dragDrop}
+    >
 
     </div>
   )
+
 }
 
 export default Cell;
+
+
+
+
 

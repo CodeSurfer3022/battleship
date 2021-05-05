@@ -5,6 +5,8 @@ import styleShip from "../Helpers/styleShip";
 
 function Ship(props){
   const {positions,length, orientation} = props.ship;
+  const {dragStart, dragEnd} = props;
+
   const start = positions[0];
   const end = positions[length - 1];
 
@@ -18,6 +20,8 @@ function Ship(props){
          data-end={end}
          style={style}
          draggable="true"
+         onDragStart={dragStart}
+         onDragEnd={dragEnd}
     >
 
     </div>
