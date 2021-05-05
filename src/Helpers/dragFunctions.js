@@ -1,6 +1,6 @@
 // Dragging functions
 
-import {areValidPositions, getPositionsFromShipDiv, moveShipDiv} from "./ShipDivMovementHandler";
+// import {areValidPositions, getPositionsFromShipDiv, moveShipDiv} from "./ShipDivMovementHandler";
 
 export default {
   dragStart(e) {
@@ -45,26 +45,26 @@ export default {
 
 function handleDrop(ship, cell) {
   // move the div
-  const orientation = [...ship.classList].includes('horizontal') ? 'horizontal' : 'vertical';
-  const length = ship.getAttribute('data-length');
-
-  // get old end and positions
-  const oldEnd = orientation === 'horizontal' ?
-    parseInt(ship.getAttribute('data-right'))
-    : parseInt(ship.getAttribute('data-bottom'));
-  const oldPositions = getPositionsFromShipDiv(orientation, length, oldEnd);
-  console.log(oldEnd, oldPositions);
-
-  // check if moving this div will cause any of the positions to overlap
-  const newEnd = parseInt(cell.getAttribute('data-key'));
-  const newPositions = getPositionsFromShipDiv(orientation, length, newEnd);
-
-  if(!areValidPositions(newPositions, oldPositions)) return;
-  console.log(newEnd, newPositions);
-
-  moveShipDiv(ship, cell, orientation, length);
-
-  const shipIndex = parseInt(ship.getAttribute('data-ship'));
-  console.log(shipIndex, oldPositions, newPositions);
+  // const orientation = [...ship.classList].includes('horizontal') ? 'horizontal' : 'vertical';
+  // const length = ship.getAttribute('data-length');
+  //
+  // // get old end and positions
+  // const oldEnd = orientation === 'horizontal' ?
+  //   parseInt(ship.getAttribute('data-right'))
+  //   : parseInt(ship.getAttribute('data-bottom'));
+  // const oldPositions = getPositionsFromShipDiv(orientation, length, oldEnd);
+  // console.log(oldEnd, oldPositions);
+  //
+  // // check if moving this div will cause any of the positions to overlap
+  // const newEnd = parseInt(cell.getAttribute('data-key'));
+  // const newPositions = getPositionsFromShipDiv(orientation, length, newEnd);
+  //
+  // if(!areValidPositions(newPositions, oldPositions)) return;
+  // console.log(newEnd, newPositions);
+  //
+  // moveShipDiv(ship, cell, orientation, length);
+  //
+  // const shipIndex = parseInt(ship.getAttribute('data-ship'));
+  // console.log(shipIndex, oldPositions, newPositions);
   // selfBoard.updateShip(shipIndex, oldPositions, newPositions);
 }

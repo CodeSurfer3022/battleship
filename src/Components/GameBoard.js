@@ -5,7 +5,7 @@ import Cell from "./Cell";
 import Ship from "./Ship";
 
 function GameBoard(props) {
-  const {player, boardValues, ships, playRound, turn} = props;
+  const {player, boardValues, ships, playRound, turn, dragFunctions} = props;
 
   const pause = turn !== player ? '' : 'pause';
 
@@ -13,11 +13,17 @@ function GameBoard(props) {
     <Cell key={index}
           value={value}
           index={index}
+          dragover={dragFunctions.dragOver}
+          dragenter={dragFunctions.dragenter}
+          dragleave={dragFunctions.dragleave}
+          drop={dragFunctions.dragDrop}
     />);
 
   const shipDivs = player === 'Player' ? ships.map((ship, index) =>
     <Ship key={index}
           ship={ship}
+          dragStart={dragFunctions.dragStart}
+          dragEnd={dragFunctions.dragEnd}
     />) : null;
 
   return(

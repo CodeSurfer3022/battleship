@@ -2,6 +2,7 @@ import React from "react";
 import "./PlayArea.css";
 
 import GameBoardContainer from "./GameBoardContainer";
+import dragFunctions from "../Helpers/dragFunctions";
 
 function PlayArea(props) {
   const {player, computer, boardValues, playRound, turn} = props;
@@ -14,6 +15,7 @@ function PlayArea(props) {
         boardValues={boardValues[player.name]}
         ships={player.ships}
         playRound={null}
+        dragFunctions={dragFunctions}
       />
 
       <GameBoardContainer
@@ -22,6 +24,7 @@ function PlayArea(props) {
         boardValues={boardValues[computer.name]}
         ships={computer.ships}
         playRound={playRound}
+        dragFunctions={null}
       />
     </div>
   )

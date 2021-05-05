@@ -2,6 +2,7 @@ import React from "react";
 import "./GameBoardContainer.css";
 import GameBoard from "./GameBoard";
 import ShipsStatus from "./ShipsStatus";
+import dragFunctions from "../Helpers/dragFunctions";
 
 // Numbers for sidetabs
 let numbers = [];
@@ -25,6 +26,7 @@ function GameBoardContainer(props) {
             boardValues={boardValues}
             ships={ships}
             playRound={playRound}
+            dragFunctions={dragFunctions}
           />
           <div className="bottom-tab">
             {numbers}
