@@ -26,6 +26,10 @@
     animation-duration: 1000ms;
 }
 
+.hovered {
+    border: 1px dashed black;
+}
+
 @keyframes hit {
     0%{
         background-color: black;

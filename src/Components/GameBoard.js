@@ -21,6 +21,7 @@ function GameBoard(props) {
 
   const shipDivs = player === 'Player' ? ships.map((ship, index) =>
     <Ship key={index}
+          index={index}
           ship={ship}
           dragStart={dragFunctions.dragStart}
           dragEnd={dragFunctions.dragEnd}
