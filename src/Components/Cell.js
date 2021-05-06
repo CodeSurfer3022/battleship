@@ -9,8 +9,6 @@ function Cell(props) {
     status = value;
   }
 
-  console.log(dragOver)
-
   return(
     <div className={`cell ${status}`}
          data-key={index}

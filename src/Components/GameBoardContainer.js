@@ -6,7 +6,7 @@ import dragFunctions from "../Helpers/dragFunctions";
 
 // Numbers for sidetabs
 let numbers = [];
-for(let i = 0; i < 10; i++) numbers.push(<div className="number">
+for(let i = 0; i < 10; i++) numbers.push(<div className="number" key={i}>
   <p>{i}</p>
 </div>);
 

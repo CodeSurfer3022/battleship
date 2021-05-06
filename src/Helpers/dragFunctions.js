@@ -3,18 +3,22 @@
 // import {areValidPositions, getPositionsFromShipDiv, moveShipDiv} from "./ShipDivMovementHandler";
 
 export default {
-  dragStart(e) {
+  // drag start and end events are on ship divs
+  dragStart(event) {
     console.log('start');
-    console.log(e, this);
-    // const shipNum = this.getAttribute('data-ship');
-    // e.dataTransfer.setData("text", shipNum);
-    // setTimeout(() => this.classList.add('hidden'), 0);
+    const ship = event.target;
+    console.log(ship);
+    const shipNum = ship.getAttribute('data-ship');
+    event.dataTransfer.setData("text", shipNum);
+    setTimeout(() => ship.classList.add('hidden'), 0);
   },
 
-  dragEnd() {
+  dragEnd(event) {
     console.log('end');
-    // this.classList.remove('hidden');
+    event.target.classList.remove('hidden');
   },
+
+  //////////////////////////////////////////////////////////////////////////////////
 
   dragOver(e) {
     console.log('over');

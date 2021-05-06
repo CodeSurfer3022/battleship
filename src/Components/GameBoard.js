@@ -7,8 +7,6 @@ import Ship from "./Ship";
 function GameBoard(props) {
   const {player, boardValues, ships, playRound, turn, dragFunctions} = props;
 
-  console.log(dragFunctions.dragOver);
-
   const pause = turn !== player ? '' : 'pause';
 
   const cells = boardValues.map((value, index = 0) =>
