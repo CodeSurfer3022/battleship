@@ -1,21 +1,29 @@
-function styleShip(start, orientation, length) {
-  const topOffset = Math.floor(start/ 10);
-  const leftOffset = start % 10;
+function getOffsets(start, cellSize) {
+  let  topOffset = Math.floor(start/ 10);
+  topOffset *= cellSize;
 
+  let leftOffset = start % 10;
+  leftOffset *= cellSize;
+
+  return {topOffset, leftOffset};
+}
+
+function styleShip(start, orientation, length, cellSize = 40) {
   const style = {position: 'absolute'};
 
-  style.top = `${topOffset * 40}px`;
-  style.left = `${leftOffset * 40}px`;
+  const {topOffset, leftOffset} = getOffsets(start, cellSize);
+  style.top = `${topOffset}px`;
+  style.left = `${leftOffset}px`;
 
   if(orientation === 'vertical') {
-    style.width = '40px';
-    style.height = `${40 * length}px`;
+    style.width = `${cellSize}px`;
+    style.height = `${cellSize * length}px`;
   } else {
-    style.height = '40px';
-    style.width = `${40 * length}px`;
+    style.height = `${cellSize}px`;
+    style.width = `${cellSize * length}px`;
   }
 
   return style;
 }
 
-export default styleShip;
+export {styleShip, getOffsets};
