@@ -16,10 +16,10 @@ function GameBoard(props) {
           dragOver={dragFunctions.dragOver}
           dragEnter={dragFunctions.dragEnter}
           dragLeave={dragFunctions.dragLeave}
-          dragDrop={dragFunctions.dragDrop}
+          dragDrop={(e) => dragFunctions.dragDrop(e, player)}
     />);
 
-  const shipDivs = player === 'Player' ? ships.map((ship, index) =>
+  const shipDivs = player.name === 'Player' ? ships.map((ship, index) =>
     <Ship key={index}
           index={index}
           ship={ship}
@@ -28,7 +28,7 @@ function GameBoard(props) {
     />) : null;
 
   return(
-    <div className={`game-board ${player} ${pause}`} onClick={playRound}>
+    <div className={`game-board ${player.name} ${pause}`} onClick={playRound}>
       {cells}
       {shipDivs}
     </div>

@@ -1,5 +1,5 @@
 // Dragging functions
-import {handleDrop} from "./ShipDivMovementHandler";
+import handleDrop from "./ShipDivMovementHandler";
 
 export default (function () {
   let ship;
@@ -32,7 +32,7 @@ export default (function () {
     event.target.className = 'cell';
   }
 
-  function dragDrop(event) {
+  function dragDrop(event, player) {
     console.log('drop');
     event.preventDefault();
     const data = event.dataTransfer.getData("text");
@@ -40,7 +40,7 @@ export default (function () {
     const cell = event.target;
     cell.className = 'cell';
     console.log(ship, cell);
-    handleDrop(ship, cell);
+    handleDrop(player, ship, cell);
   }
 
   return {dragStart, dragEnd, dragOver, dragEnter, dragLeave, dragDrop};

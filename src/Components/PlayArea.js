@@ -10,8 +10,8 @@ function PlayArea(props) {
   return(
     <div className="play-area">
       <GameBoardContainer
-        turn={turn.name}
-        player={player.name}
+        turn={turn}
+        player={player}
         boardValues={boardValues[player.name]}
         ships={player.ships}
         playRound={null}
@@ -19,8 +19,8 @@ function PlayArea(props) {
       />
 
       <GameBoardContainer
-        turn={turn.name}
-        player={computer.name}
+        turn={turn}
+        player={computer}
         boardValues={boardValues[computer.name]}
         ships={computer.ships}
         playRound={playRound}
