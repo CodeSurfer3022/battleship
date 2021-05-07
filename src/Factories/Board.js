@@ -1,3 +1,5 @@
+import Ship from "./Ship";
+
 function Board() {
     const boardValues = [];
     let ships = [];
@@ -13,6 +15,19 @@ function Board() {
         } else {
             console.log("one or more positions are occupied")
         }
+    }
+
+    const updateShip = (index, oldPositions, newPositions) => {
+        // remove ship from old position
+        oldPositions.forEach(position => boardValues[position] = undefined);
+
+        ships.forEach(ship => console.log(ship.getPositions()));
+        // replace old ship with new ship
+        ships[index] = Ship(newPositions);
+
+        ships.forEach(ship => console.log(ship.getPositions()));
+        // place this ship on the boardArray
+        newPositions.forEach(position => boardValues[position] = index);
     }
 
     const placeAllShips = (shipsArr) => {
@@ -48,6 +63,7 @@ function Board() {
         isPositionHit,
         isPositionMiss,
         placeAllShips,
+        updateShip,
         receiveAttack,
         areAllShipsSunk
     }
