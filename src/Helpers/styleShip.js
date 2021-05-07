@@ -1,4 +1,4 @@
-function getOffsets(start, cellSize) {
+function getOffsets(start, cellSize=40) {
   let  topOffset = Math.floor(start/ 10);
   topOffset *= cellSize;
 

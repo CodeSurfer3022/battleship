@@ -5,3 +5,7 @@
 .hidden {
     display: none;
 }
+
+.ship:hover {
+    cursor: pointer;
+}
