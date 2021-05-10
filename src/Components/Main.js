@@ -3,10 +3,8 @@ import './Main.css';
 
 import GameRibbon from "./GameRibbon";
 import PlayArea from "./PlayArea";
-import Player from "../Factories/Player";
-import Board from "../Factories/Board";
-import makeShips from "../Helpers/makeShips";
 import computerAttack from "../Helpers/computerAttack";
+import {computer, player} from "../Players";
 
 // The board initially has no ships, so initialize to undefined
 let initialValues = [];
@@ -20,7 +18,11 @@ let winner;
 console.log(computer.ships.forEach(ship => console.log(ship.positions)));
 
 function Main() {
-
+  const [boardValues, setBoardValues] = useState(
+    {
+      [player.name]: initialValues,
+      [computer.name]: initialValues
+    })
 
   function attack(player, opponent, position) {
     if(turn === opponent) return;
