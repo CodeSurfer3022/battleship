@@ -3,17 +3,8 @@ import './Main.css';
 
 import GameRibbon from "./GameRibbon";
 import PlayArea from "./PlayArea";
-import Player from "../Factories/Player";
-import Board from "../Factories/Board";
-import makeShips from "../Helpers/makeShips";
 import computerAttack from "../Helpers/computerAttack";
 
-// The board initially has no ships, so initialize to undefined
-let initialValues = [];
-for(let i = 0; i < 100; i ++) initialValues.push(undefined);
-
-// The initial turn is of player
-let turn = player;
 let attackResult;
 let winner;
 
