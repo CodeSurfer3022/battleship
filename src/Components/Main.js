@@ -8,29 +8,6 @@ import Board from "../Factories/Board";
 import makeShips from "../Helpers/makeShips";
 import computerAttack from "../Helpers/computerAttack";
 
-// create Players to access attack functionality
-let player = Player('Player');
-let computer = Player('Computer');
-
-// make boards for players
-let playerBoard = Board();
-let computerBoard = Board();
-
-// make ships for players
-let playerShips = makeShips();
-let computerShips = makeShips();
-
-// place ships on the respective player's board
-playerBoard.placeAllShips(playerShips);
-computerBoard.placeAllShips(computerShips);
-
-// Update players with their respective boards and ships
-player.board = playerBoard;
-player.ships = playerBoard.ships;
-
-computer.board = computerBoard;
-computer.ships = computerBoard.ships;
-
 // The board initially has no ships, so initialize to undefined
 let initialValues = [];
 for(let i = 0; i < 100; i ++) initialValues.push(undefined);
@@ -43,11 +20,7 @@ let winner;
 console.log(computer.ships.forEach(ship => console.log(ship.positions)));
 
 function Main() {
-  const [boardValues, setBoardValues] = useState(
-    {
-      [player.name]: initialValues,
-      [computer.name]: initialValues
-    })
+
 
   function attack(player, opponent, position) {
     if(turn === opponent) return;
