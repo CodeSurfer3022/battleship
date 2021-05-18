@@ -1,3 +1,3 @@
 #Battleship
 
-Live preview: 
+Live preview: https://chandraprakash-dev.github.io/battleship/
